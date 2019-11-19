@@ -1,0 +1,43 @@
+<view class="editCon">
+  <view class="editCon_row border_b">
+    <text class="text">姓名</text>
+    <input placeholder="（必填）联系人姓名" bindinput="input" data-type="name" value="{{init_name}}" />
+  </view>
+
+  <view class="editCon_row border_b">
+    <text class="text">手机号</text>
+    <input type="number" placeholder="（必填）联系人手机号" bindinput="input" data-type="phone" value="{{init_phone}}" />
+  </view>
+
+  <view class="editCon_row border_b">
+    <text class="text">卡号</text>
+    <input type="number" placeholder="（必填）失卡信息" bindinput="input" data-type="card_id" value="{{init_card_id}}" />
+  </view>
+
+  <view class="editCon_row border_b">
+    <text class="text" style="margin-top:2rpx;">学校</text>
+    <view class="container">
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{schools}}">
+          <view class="picker">
+            <text>{{schools[index]}}</text>
+          </view>
+        </picker>
+        <!-- <view catchtap="open">{{school}}</view> -->
+    </view>
+    <text class="arrows"></text>
+  </view>
+
+  <view class="editCon_row border_b">
+    <text class="text">专业</text>
+    <input type="text" placeholder="（选填）失卡信息" bindinput="input" data-type="major" value="{{init_major}}" />
+  </view>
+
+  <view class="editCon_row">
+    <text class="text">备注</text>
+    <textarea placeholder="（选填）其他信息" bindinput="input" data-type="message" value="{{init_message}}" />
+  </view>
+
+</view>
+<view class="editBtn" bindtap="confirm">
+  确认
+</view>

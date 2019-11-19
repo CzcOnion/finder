@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/my/my",
+    "pages/feedback/feedback",
+    "pages/fqa/fqa",
+    "pages/serverFlow/serverFlow",
+    "pages/logs/logs",
+    "pages/check_in/check_in",
+    "pages/detail/detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffda44",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#333",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "失卡登记",
+        "iconPath": "images/icon_maintain.png",
+        "selectedIconPath": "images/icon_maintain_h.png"
+      },
+      {
+        "pagePath": "pages/detail/detail",
+        "text": "失卡信息",
+        "iconPath": "images/icon_order.png",
+        "selectedIconPath": "images/icon_order_h.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/icon_my.png",
+        "selectedIconPath": "images/icon_my_h.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}
