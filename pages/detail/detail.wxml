@@ -1,2 +1,43 @@
 <!--pages/detail/detail.wxml-->
-<text>pages/detail/detail.wxml</text>
+<view class="container">
+	  <view class="search-flex {{scrolltop>200?'tophide':''}}">
+    	<view class="search-bar">
+			<input type="text" maxlength="12" placeholder="请输入关键字查询" bindinput="inputSearch"></input>
+			<button class="search-btn" bindtap="submitSearch" wx:if="{{showsearch}}">搜索</button>
+		</view>
+    <button class="message-btn" bindtap='message'><image src="../../images/add.png" class='image'></image></button>
+	</view>
+	<view class="filter-flex">
+		<view class="filter-tab">
+			<text bindtap="fetchSortData" data-findex="1" class="{{sortindex==1?'active':''}}">采集任务</text>
+			<text bindtap="fetchSortData" data-findex="2" class="{{sortindex==2?'active':''}}">标识任务</text>
+		</view>
+
+	</view>
+	<scroll-view class="container-body" scroll-y="true" scroll-top="{{scrolltop}}" bindscroll="scrollHandle" lower-threshold="50" bindscrolltolower="scrollLoading">
+		<view class="task-list">
+			<navigator class="task-item" wx:for="{{sortlist}}" wx:key="{{item.id}}" bindtap='taskDetail' data-task="{{item}}">
+      	<view class="task-img">
+					<image src="../../images/sound.png" mode="aspectFill"></image>
+				</view>
+				<view class="task-text">
+        <view class='task-text-left'>
+					<view class="task-tite">{{item.title}}</view>
+					<view class="task-tags">
+						<!-- <text>{{item.text}}</text> -->
+            	<text wx:if="{{item.type=='VOICE_ANNOTATION'}}">标识任务</text>
+            	<text wx:if="{{item.type=='VOICE_COLLECTION'}}">采集任务</text>
+					</view>
+        </view>
+        <view class='task-text-right'>
+          <view class="task-number">人数要求：{{item.remainNumber}}/{{item.number}}</view>
+					<view class="task-reward">
+						<text>酬薪：￥{{item.money}}</text>
+					</view>
+        </view>
+				</view>
+			</navigator>
+		</view>
+		<view class="gototop {{scrolltop>200?'active':''}}" bindtap="goToTop"></view>
+	</scroll-view>
+</view>
