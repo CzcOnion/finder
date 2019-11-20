@@ -9,8 +9,9 @@
 	</view>
 	<view class="filter-flex">
 		<view class="filter-tab">
-			<text bindtap="fetchSortData" data-findex="1" class="{{sortindex==1?'active':''}}">采集任务</text>
-			<text bindtap="fetchSortData" data-findex="2" class="{{sortindex==2?'active':''}}">标识任务</text>
+			<text bindtap="fetchSortData" data-findex="1" class="{{sortindex==1?'active':''}}">寻卡启示</text>
+			<text bindtap="fetchSortData" data-findex="2" class="{{sortindex==2?'active':''}}">失卡待领</text>
+      <text bindtap="fetchSortData" data-findex="3" class="{{sortindex==3?'active':''}}">全部</text>
 		</view>
 
 	</view>
