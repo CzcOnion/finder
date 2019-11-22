@@ -13,20 +13,23 @@ App({
         if (res.code) {
           //发起网络请求
           wx.request({
-            url: "122.51.236.116:3306",
+            url: "http://localhost:8080/usermgr/login",
+            method:"POST",
             data: {
               code: res.code
             },
             success: function (res) {
               var app = getApp();
+              console.log(res);
               app.globalData.openid = res.data.openid;
               app.globalData.unionid = res.data.unionid;
             },
-            fail: function () {
+            fail: function (res) {
+              console.log(res);
               console.log("index.js wx.request CheckCallUser fail");
             },
-            complete: function () {
-
+            complete: function (res) {
+              console.log(res);
               // complete
             }
           })
