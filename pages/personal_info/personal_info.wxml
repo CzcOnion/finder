@@ -1,0 +1,34 @@
+<view class="editCon">
+  <view class="editCon_row border_b">
+    <text class="text">姓名</text>
+    <input placeholder="你的姓名" bindinput="input" data-type="name" value="{{init_name}}" />
+  </view>
+
+  <view class="editCon_row border_b">
+    <text class="text">手机号</text>
+    <input type="number" placeholder="你的手机号" bindinput="input" data-type="phone" value="{{init_phone}}" />
+  </view>
+
+  <view class="editCon_row border_b">
+    <text class="text" style="margin-top:2rpx;">学校</text>
+    <view class="container">
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{schools}}">
+          <view class="picker">
+            <text>{{schools[index]}}</text>
+          </view>
+        </picker>
+        <!-- <view catchtap="open">{{school}}</view> -->
+    </view>
+    <text class="arrows"></text>
+  </view>
+
+  <view class="editCon_row border_b">
+    <text class="text">专业</text>
+    <input type="text" placeholder="你的专业" bindinput="input" data-type="major" value="{{init_major}}" />
+  </view>
+
+
+</view>
+<view class="editBtn" bindtap="confirm">
+  绑定
+</view>

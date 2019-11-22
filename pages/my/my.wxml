@@ -5,27 +5,21 @@
   <view class="name">{{userInfo.nickName}}</view>
 </view>
 <view class="rowCon">
-  <view class="row border_b" catchtap="openwin" data-url="address">
-    <view class="row_l dz" catchtap="openwin" data-url="address">
+  <view class="row border_b" catchtap="openwin" data-url="personal_info">
+    <view class="row_l dz" catchtap="openwin" data-url="personal_info">
       <image src="../../images/dz.png"></image>
     </view>
-    <view class="row_text" catchtap="openwin" data-url="address">我的信息</view>
-    <view class="arrows" catchtap="openwin" data-url="address"></view>
+    <view class="row_text" catchtap="openwin" data-url="personal_info">我的信息</view>
+    <view class="arrows" catchtap="openwin" data-url="personal_info"></view>
   </view>
-  <!-- <view class="row border_b" catchtap="openwin" data-url="coupon">
-    <view class="row_l yhq" catchtap="openwin" data-url="coupon">
-      <image src="../../images/yhq.png"></image>
-    </view>
-    <view class="row_text" catchtap="openwin" data-url="coupon">优惠券</view>
-    <view class="arrows" catchtap="openwin" data-url="coupon"></view>
-  </view> -->
+
   <view class="row" catchtap="tel">
     <view class="row_l lxkf" catchtap="tel">
       <image src="../../images/lxkf.png"></image>
     </view>
     <view class="row_text" catchtap="tel">
-      联系客服
-      <text catchtap="tel">400-9915591</text>
+      我的卡片
+      <!--<text catchtap="tel">400-9915591</text>-->
     </view>
     <view class="arrows" catchtap="tel"></view>
   </view>

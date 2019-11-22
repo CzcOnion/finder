@@ -10,6 +10,29 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) {
+          //发起网络请求
+          wx.request({
+            url: "122.51.236.116:3306",
+            data: {
+              code: res.code
+            },
+            success: function (res) {
+              var app = getApp();
+              app.globalData.openid = res.data.openid;
+              app.globalData.unionid = res.data.unionid;
+            },
+            fail: function () {
+              console.log("index.js wx.request CheckCallUser fail");
+            },
+            complete: function () {
+
+              // complete
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
       }
     })
     // 获取用户信息
@@ -34,6 +57,10 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    backIp: "122.51.236.116",
+    backPort: "3306",
+    openid: null,
+    unioniud: null
   }
 })
