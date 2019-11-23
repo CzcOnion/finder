@@ -8,7 +8,9 @@
     "pages/logs/logs",
     "pages/check_in/check_in",
     "pages/detail/detail",
-    "pages/personal_info/personal_info"
+    "pages/personal_info/personal_info",
+    "pages/find_loser/find_loser",
+    "pages/cards/cards"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -29,8 +31,8 @@
         "selectedIconPath": "images/icon_maintain_h.png"
       },
       {
-        "pagePath": "pages/detail/detail",
-        "text": "失卡信息",
+        "pagePath": "pages/find_loser/find_loser",
+        "text": "拾卡寻人",
         "iconPath": "images/icon_order.png",
         "selectedIconPath": "images/icon_order_h.png"
       },

@@ -9,6 +9,7 @@ Page({
     message: '',//备注
     schools:[],//学校集合
     school:'',//学校
+    code: 0, // 学校代码
     major:'',//专业
     index:0,
   },

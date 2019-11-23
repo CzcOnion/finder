@@ -1,0 +1,48 @@
+<view class="editCon">
+
+ <view class="editCon_row border_b">
+    <text class="text" style="margin-top:2rpx;">卡类型</text>
+    <view class="container">
+        <picker bindchange="bindPickerChange_card" value="{{card_index}}" range="{{cardtypes}}">
+          <view class="picker">
+            <text>{{cardtypes[card_index]}}</text>
+          </view>
+        </picker>
+        <!-- <view catchtap="open">{{school}}</view> -->
+    </view>
+    <text class="arrows"></text>
+  </view>
+
+  <view class="editCon_row border_b">
+    <text class="text">卡号</text>
+    <input placeholder="(必填)失卡人的卡号" bindinput="input" data-type="cardnum" value="{{cardnum}}"/>
+  </view>
+  
+  <view class="editCon_row border_b">
+    <text class="text">姓名</text>
+    <input placeholder="(选填)失卡人的姓名" bindinput="input" data-type="name" value="{{init_name}}" />
+  </view>
+
+   <view class="editCon_row border_b">
+    <text class="text" style="margin-top:2rpx;">学校</text>
+    <view class="container">
+        <picker bindchange="bindPickerChange_school" value="{{school_index}}" range="{schools}}">
+          <view class="picker">
+            <text>{{schools[school_index]}}</text>
+          </view>
+        </picker>
+        <!-- <view catchtap="open">{{school}}</view> -->
+    </view>
+    <text class="arrows"></text>
+  </view>
+
+  <view class="editCon_row border_b">
+    <text class="text">专业</text>
+    <input type="text" placeholder="(选填)失卡人专业" bindinput="input" data-type="major" value="{{init_major}}" />
+  </view>
+
+
+</view>
+<view class="editBtn" bindtap="confirm">
+  拾卡寻人
+</view>

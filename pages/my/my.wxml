@@ -5,24 +5,30 @@
   <view class="name">{{userInfo.nickName}}</view>
 </view>
 <view class="rowCon">
-  <view class="row border_b" catchtap="openwin" data-url="personal_info">
-    <view class="row_l dz" catchtap="openwin" data-url="personal_info">
+  <view class="row border_b" catchtap="openwin" data-url="address">
+    <view class="row_l dz" catchtap="openwin" data-url="address">
       <image src="../../images/dz.png"></image>
     </view>
-    <view class="row_text" catchtap="openwin" data-url="personal_info">我的信息</view>
-    <view class="arrows" catchtap="openwin" data-url="personal_info"></view>
+    <view class="row_text" catchtap="openwin" data-url="address">我的信息</view>
+    <view class="arrows" catchtap="openwin" data-url="address"></view>
   </view>
-
-  <view class="row" catchtap="tel">
+  <view class="row border_b" catchtap="openwin" data-url="cards">
+    <view class="row_l yhq" catchtap="openwin" data-url="cards">
+      <image src="../../images/lxkf.png"></image>
+    </view>
+    <view class="row_text" catchtap="openwin" data-url="cards">我的卡片</view>
+    <view class="arrows" catchtap="openwin" data-url="cards"></view>
+  </view>
+  <!-- <view class="row" catchtap="tel">
     <view class="row_l lxkf" catchtap="tel">
       <image src="../../images/lxkf.png"></image>
     </view>
     <view class="row_text" catchtap="tel">
-      我的卡片
-      <!--<text catchtap="tel">400-9915591</text>-->
+      联系客服
+      <text catchtap="tel">400-9915591</text>
     </view>
     <view class="arrows" catchtap="tel"></view>
-  </view>
+  </view> -->
 </view>
 <!-- <view class="contact">
   <contact-button type="default-light" size="125" session-from="小程序加速度手机维修"></contact-button>
