@@ -5,12 +5,12 @@
   <view class="name">{{userInfo.nickName}}</view>
 </view>
 <view class="rowCon">
-  <view class="row border_b" catchtap="openwin" data-url="address">
-    <view class="row_l dz" catchtap="openwin" data-url="address">
+  <view class="row border_b" catchtap="openwin" data-url="personal_info">
+    <view class="row_l dz" catchtap="openwin" data-url="personal_info">
       <image src="../../images/dz.png"></image>
     </view>
-    <view class="row_text" catchtap="openwin" data-url="address">我的信息</view>
-    <view class="arrows" catchtap="openwin" data-url="address"></view>
+    <view class="row_text" catchtap="openwin" data-url="personal_info">我的信息</view>
+    <view class="arrows" catchtap="openwin" data-url="personal_info"></view>
   </view>
   <view class="row border_b" catchtap="openwin" data-url="cards">
     <view class="row_l yhq" catchtap="openwin" data-url="cards">

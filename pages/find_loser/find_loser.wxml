@@ -26,7 +26,7 @@
    <view class="editCon_row border_b">
     <text class="text" style="margin-top:2rpx;">学校</text>
     <view class="container">
-        <picker bindchange="bindPickerChange_school" value="{{school_index}}" range="{schools}}">
+        <picker bindchange="bindPickerChange_school" value="{{school_index}}" range="{{schools}}">
           <view class="picker">
             <text>{{schools[school_index]}}</text>
           </view>

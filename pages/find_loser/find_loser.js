@@ -7,8 +7,10 @@ var app = getApp()
 Page({
   data: {
     cardnum: '',//卡号
+    cardData:[],
     cardtypes:[],//卡片集合
     cardtype: '',//卡片
+    schoolData:[],
     schools: [],//学校集合
     school: '',//学校
     card_index:0,
@@ -24,14 +26,14 @@ Page({
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       card_index: e.detail.value,
-      cardCode: cardtypes[card_index].code
+      cardCode: this.data.cardData[e.detail.value].code
     })
   },
   bindPickerChange_school: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       school_index: e.detail.value,
-      schoolCode: schools[school_index].code
+      schoolCode: this.data.schoolData[e.detail.value].code
     })
   },
   open: function () {
@@ -54,10 +56,12 @@ Page({
     tcity2.init(that);
     var schoolData = that.data.schoolData;
     const schools = [];
+    console.log("data lengeh:");
+    console.log(schoolData.length);
     for (let i = 0; i < schoolData.length; i++) {
       schools.push(schoolData[i].name);
     }
-    
+    console.log(schools.length);
     that.setData({
       'cardtypes': cardtypes,
       'cardtype': cardtypes[0],
@@ -101,14 +105,14 @@ Page({
     console.log(this.data)
     var data = this.data;
     console.log("debug 1");
-    // if (!data.cardnum) {
-    //   wx.showToast({
-    //     title: '请输入卡号',
-    //     icon: '12',
-    //     duration: 2000
-    //   });
-    //   return false;
-    // }
+    if (!data.cardnum) {
+      wx.showToast({
+        title: '请输入卡号',
+        icon: '12',
+        duration: 2000
+      });
+      return false;
+    }
     data.cardnum = '15';
     console.log("debug 2");
     wx.showLoading({
