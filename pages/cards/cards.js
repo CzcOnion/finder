@@ -28,4 +28,11 @@ Page({
     confirm: function () {
     
   },
+  openwin: function (event) { //跳转页面
+    console.log(event)
+    var path = event.target.dataset.url;
+    wx.navigateTo({
+      url: '../' + path + '/' + path
+    })
+  },
 })

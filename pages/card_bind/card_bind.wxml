@@ -1,0 +1,24 @@
+<view class="editCon">
+
+ <view class="editCon_row border_b">
+    <text class="text" style="margin-top:2rpx;">卡类型</text>
+    <view class="container">
+        <picker bindchange="bindPickerChange_card" value="{{card_index}}" range="{{cardtypes}}">
+          <view class="picker">
+            <text>{{cardtypes[card_index]}}</text>
+          </view>
+        </picker>
+        <!-- <view catchtap="open">{{school}}</view> -->
+    </view>
+    <text class="arrows"></text>
+  </view>
+
+  <view class="editCon_row border_b">
+    <text class="text">卡号</text>
+    <input placeholder="你的卡号" bindinput="input" data-type="cardnum" value="{{cardnum}}"/>
+  </view>
+
+</view>
+<view class="editBtn" bindtap="confirm">
+  绑定
+</view>

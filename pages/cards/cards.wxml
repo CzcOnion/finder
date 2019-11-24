@@ -44,7 +44,7 @@
   </view>
   <view class="flex item_bottom" style="display: flex;">
     
-    <view><button class="editBtn" bindtap="confirm">添加卡片</button></view>
+    <view><button class="editBtn" catchtap="openwin" data-url="card_bind">添加卡片</button></view>
 
   </view>
 </view>

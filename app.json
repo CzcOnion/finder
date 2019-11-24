@@ -10,7 +10,8 @@
     "pages/detail/detail",
     "pages/personal_info/personal_info",
     "pages/find_loser/find_loser",
-    "pages/cards/cards"
+    "pages/cards/cards",
+    "pages/card_bind/card_bind"
   ],
   "window": {
     "backgroundTextStyle": "light",
