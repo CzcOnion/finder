@@ -10,6 +10,7 @@
       <image src="../../images/dz.png"></image>
     </view>
     <view class="row_text" catchtap="openwin" data-url="personal_info">我的信息</view>
+    <view><text class="row_status {{isRegister == 1? 'instatus':'notstatus'}}">{{registerText}}</text></view>
     <view class="arrows" catchtap="openwin" data-url="personal_info"></view>
   </view>
   <view class="row border_b" catchtap="openwin" data-url="cards">
@@ -17,20 +18,7 @@
       <image src="../../images/lxkf.png"></image>
     </view>
     <view class="row_text" catchtap="openwin" data-url="cards">我的卡片</view>
+    <view><text class="row_status {{hasBindCard == 1? 'instatus':'notstatus'}}">{{bindText}}</text></view>
     <view class="arrows" catchtap="openwin" data-url="cards"></view>
   </view>
-  <!-- <view class="row" catchtap="tel">
-    <view class="row_l lxkf" catchtap="tel">
-      <image src="../../images/lxkf.png"></image>
-    </view>
-    <view class="row_text" catchtap="tel">
-      联系客服
-      <text catchtap="tel">400-9915591</text>
-    </view>
-    <view class="arrows" catchtap="tel"></view>
-  </view> -->
 </view>
-<!-- <view class="contact">
-  <contact-button type="default-light" size="125" session-from="小程序加速度手机维修"></contact-button>
-  <image src="../../images/contact.png"></image>
-</view> -->

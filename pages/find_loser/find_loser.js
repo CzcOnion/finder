@@ -142,7 +142,7 @@ Page({
         school: data.school,
         schoolCode: data.schoolCode,
         major: data.major,
-        seqId: seqId
+        seqId: seqId,
       },
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header

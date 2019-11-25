@@ -1,13 +1,50 @@
 var app = getApp();
 Page({
   data: {
-    userInfo: ''
+    userInfo: '',
+    registerText: '',
+    bindText: '',
+    isRegister: 0,
+    hasBindCard: 0,
   },
   onLoad: function (options) {
     // 生命周期函数--监听页面加载
     this.setData({
-      userInfo: app.globalData.userInfo
+      userInfo: app.globalData.userInfo,
+      isRegister: app.globalData.isRegister,
+      hasBindCard: app.globalData.hasBindCard,
     })
+
+    var mRegText = '';
+    if (app.globalData.isRegister == 1)
+    {
+      mRegText = "已注册";
+    }
+    else if (app.globalData.isRegister == 2)
+    {
+      mRegText = "未注册";
+    }
+    else
+    {
+      mRegText = "未知";
+    }
+
+    var mBindText = '';
+    if (app.globalData.hasBindCard == 1) {
+      mBindText = "已绑定";
+    }
+    else if (app.globalData.hasBindCard == 2) {
+      mBindText = "未绑定";
+    }
+    else {
+      mBindText = "未知";
+    }
+
+    this.setData({
+      registerText: mRegText,
+      bindText: mBindText,
+    })
+
   },
   openwin: function (event) { //跳转页面
     console.log(event)

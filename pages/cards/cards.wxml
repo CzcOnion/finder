@@ -16,32 +16,27 @@
       </view>
     </view>
   </block> -->
+  <block wx:for="{{items}}" wx:for-index="index" wx:for-item="item">
+    <view class="flex item" style="display: flex;">
+      <view class="flex_auto item_left">
+        <view><text class="title">{{item.cardName}}</text></view>
+        <view><text class="sub_title">{{item.cardId}}</text></view>
+      </view>
+      <view class="item_right">
+        <view class="editBtn" bindtap="untying" data-cardNam = "{{item.cardName}}" data-cardid = "{{item.cardId}}">解绑</view>
+      </view>
+    </view>
+    
+  </block>
   <view class="flex item" style="display: flex;">
-    <view class="flex_auto item_left">
-      <!-- <view><text class="title">{{item.title}}</text></view>
-      <view><text class="sub_title">{{item.subTitle}}</text></view>
-      <view><text class="tag">{{item.tag}}</text></view> -->
-      <view><text class="title">大学城一卡通</text></view>
-      <view><text class="sub_title">154285</text></view>
-      
+      <view class="flex_auto item_left">
+        <view><text class="title">大学城一卡通</text></view>
+        <view><text class="sub_title">877554</text></view>
+      </view>
+      <view class="item_right">
+        <view class="editBtn" bindtap="untying" data-cardNam = "大学城一卡通" data-cardid = "877554">解绑</view>
+      </view>
     </view>
-    <view class="item_right">
-      <!-- <view><text class="price">90</text></view> -->
-      <view class="editBtn" bindtap="confirm">解绑</view>
-    </view>
-  </view>
-  <view class="flex item" style="display: flex;">
-
-    <view class="flex_auto item_left">
-      <view><text class="title">大学城一卡通</text></view>
-      <view><text class="sub_title">154285</text></view>
-    </view>
-
-    <view class="item_right">
-      <view class="editBtn" bindtap="confirm" >解绑</view>
-    </view>
-
-  </view>
   <view class="flex item_bottom" style="display: flex;">
     
     <view><button class="editBtn" catchtap="openwin" data-url="card_bind">添加卡片</button></view>

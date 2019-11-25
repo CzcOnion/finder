@@ -68,3 +68,31 @@
   -webkit-transform: rotate(45deg) translateY(-50%);
   transform: rotate(45deg) translateY(-50%);
 }
+
+.row_status {
+  position: absolute;
+  margin-left: 140rpx;
+  top: 20%;
+}
+
+.instatus {
+    border: 1px solid #29cc6d;
+    border-radius: 2px;
+    color: #29cc6d;
+    display: inline-block;
+    padding: 1px 2px;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+}
+
+.notstatus {
+    border: 1px solid #f04705;
+    border-radius: 2px;
+    color: #f04705;
+    display: inline-block;
+    padding: 1px 2px;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+}
