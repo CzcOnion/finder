@@ -40,49 +40,50 @@ Page({
           var seqId = util.wxuuid();
           console.log(seqId);
           // 获取cardType
-          var cardType = event.currentTarget.dataset.cardType;
+          var cardType = event.currentTarget.dataset.cardtype;
           // 获取cardId
           var cardId = event.currentTarget.dataset.cardid; // cardid 是小写的id
-          console.log("cardType");
-          console.log(cardType);
-          console.log("cardId");
-          console.log(cardId);
+      
+          wx.showToast({
+            title: '正在解绑',
+            icon: 'loading',
+            duration: 5000,
+          })
           wx.request({
             url: 'http://localhost:8080/usermgr/untyingCard',
             method: "POST",
             data: {
               seqId: seqId,
-              openid:app.globalData.openid,
-              unionid:app.globalData.unionid,
+              openId:app.globalData.openId,
+              unionId:app.globalData.unionId,
               cardType:cardType,
               cardId:cardId,
             },
             success: function (res) {
+              wx.hideToast();
               var error_code = res.data.error_code;
-              if (error_code == 1)
+              if (res.data.errorNo == 0)
               {
                 wx.showToast({
                   title: '解绑成功',
                 })
+                this.onLoad();
               }
-              else if (error_code == 2)
+              else
               {
                 wx.showModal({
-                  title: '很遗憾',
+                  title: '解绑未成功',
                   content: '解绑不成功，请重试，如果还不成功可联系客服处理！',
                   showCancel: false,
                   confirmText: '朕知道了',
                   
                 })
               }
-              else if (error_code == 3)
-              {
-
-              }
             },
             fail: function (res) {
+              wx.hideToast();
               wx.showModal({
-                title: '很遗憾',
+                title: '解绑未成功',
                 content: '网络发生错误，无法解绑，请稍后再试试！',
                 showCancel: false,
                 confirmText: '朕知道了',
@@ -91,10 +92,11 @@ Page({
             },
             complete: function (res) {
               //返回页面
-              wx.navigateBack
-                ({
-                  delta: 1
-                })
+              // wx.navigateBack
+              //   ({
+              //     delta: 1
+              //   })
+              
             }
           })
         } else if (res.cancel) {

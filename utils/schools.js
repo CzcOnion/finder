@@ -23,6 +23,7 @@ var schoolData = [
     ]
   }
 ];
+
 function init(that) {
   that.setData({
     'schoolData': schoolData

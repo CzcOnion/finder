@@ -9,7 +9,10 @@
 <!-- 流程图片 登记入口 -->
 <view class="flow">
   <image src="../../images/flow.png"></image>
-  <view class="btn" bindtap="openwin" data-url="check_in">马上登记</view>
+  <view class="contain">
+    <view class="btn" bindtap="openwin" data-url="check_in">失卡登记</view>
+    <view class="btn" bindtap="openwinTab" data-url="find_loser">拾卡登记</view>
+  </view>
 </view>
 <!-- 失卡信息 -->
 <view class="hotCon">

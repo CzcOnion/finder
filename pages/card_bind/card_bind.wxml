@@ -8,7 +8,7 @@
             <text>{{cardtypes[card_index]}}</text>
           </view>
         </picker>
-        <!-- <view catchtap="open">{{school}}</view> -->
+       
     </view>
     <text class="arrows"></text>
   </view>

@@ -21,8 +21,8 @@ App({
             success: function (res) {
               var app = getApp();
               console.log(res);
-              app.globalData.openid      = res.data.openid;
-              app.globalData.unionid     = res.data.unionid;
+              app.globalData.openId      = res.data.openId;
+              app.globalData.unionId     = res.data.unionId;
               app.globalData.isRegister  = res.data.isRegister;
               app.globalData.hasBindCard = res.data.hasBindCard;
             },
@@ -65,7 +65,7 @@ App({
     userInfo: null,
     backIp: "122.51.236.116",
     backPort: "3306",
-    openid: null,
+    openId: null,
     unioniud: null,
     isRegister: 0,
     hasBindCard:0

@@ -27,7 +27,7 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "失卡登记",
+        "text": "主界面",
         "iconPath": "images/icon_maintain.png",
         "selectedIconPath": "images/icon_maintain_h.png"
       },

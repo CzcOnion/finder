@@ -23,9 +23,16 @@ swiper-item image {
   height: 133rpx;
   margin: 0rpx 0 30rpx;
 }
+.contain
+{
+  display:flex;
+  flex-direction: row;
+}
 
 .btn {
-  width: 90%;
+  display:inline-block;
+  justify-content: center;
+  width: 40%;
   height: 88rpx;
   line-height: 88rpx;
   text-align: center;

@@ -99,6 +99,13 @@ Page({
       url: '../select_phone/select_phone?brandID=' + event.target.dataset.brandid + '&modelID=' + event.target.dataset.modelid
     })
   },
+  openwinTab:function(event){
+    console.log(event)
+    var path = event.target.dataset.url;
+    wx.switchTab({
+      url: '../' + path + '/' + path
+    })
+  },
   onReady: function () {
     // 生命周期函数--监听页面初次渲染完成
 

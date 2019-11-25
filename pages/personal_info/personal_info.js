@@ -1,23 +1,31 @@
 //获取应用实例
 var tcity = require("../../utils/schools.js");
+var util = require('../../utils/util.js');
 
 var app = getApp()
 Page({
   data: {
     name: '',//姓名
+    bindName:'',
     phone: '',//电话号码
-    message: '',//备注
+    bindPhone:'',
+    schoolData: [],
     schools:[],//学校集合
-    school:'',//学校
-    code: 0, // 学校代码
-    major:'',//专业
+    school: '未绑定', //bindSchoolName 为用户注册的学校名，school为用户在当前页面选择的学校名
+    pickSchoolName: '', // 用户页面选择器的值 school在一开始应该与bindSchoolName一样 后面与pickSchoolName一样
+    bindSchoolName: '未绑定',
+    major:'',
+    majorCode:'',
+    bindMajorName: '',
     index:0,
   },
   //学校选择器
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      index: e.detail.value
+      index: e.detail.value,
+      pickSchoolName: this.data.schools[e.detail.value],
+      school: this.data.schools[e.detail.value]
     })
   },
   open: function () {
@@ -30,14 +38,13 @@ Page({
     //设置城市选择
     console.log("onLoad");
     tcity.init(that);
-    var schoolData = that.data.schoolData;
+    this.schoolData = that.data.schoolData;
     const schools = [];
-    for (let i = 0; i < schoolData.length; i++) {
-      schools.push(schoolData[i].name);
+    for (let i = 0; i < this.schoolData.length; i++) {
+      schools.push(this.schoolData[i].name);
     }
     that.setData({
       'schools':schools,
-      'school':schools[0]
     })
     console.log('初始化完成');
     var value = '';
@@ -50,40 +57,68 @@ Page({
     }
     console.log('缓存');
     console.log(value);
-    var name = '';
-    // if (value.name != 'undefined') {
-    //   name = value.name;
-    // }
-    var phone = '';
-    // if (value.phone != 'undefined') {
-    //   phone = value.phone;
-    // }
-    var school = '华南理工大学';
-    // if (value.school != 'undefined') {
-    //   school = value.school;
-    // }
-
-    
-
-    var major = '';
-    // if (value.major != 'undefined') {
-    //   major = value.major;
-    // }
-
- 
-
-    var message = '';
-    console.log(name)
-    that.setData({
-      init_name: name,
-      name: name,
-      init_phone: phone,
-      phone: phone,
-      school:school,
-      init_message:message,
-      init_major:major,
+    // 获取seqId
+    var seqId = util.wxuuid();
+    // 获取信息
+    wx.request({
+      url: app.globalData.backIp + ':' + app.globalData.backPort + "/getRegUserInfo",
+      data: {
+        sqeId: seqId,
+        openId: app.globalData.openId,
+        unionId: app.globalData.unionId,
+      },
+      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      // header: {}, // 设置请求的 header
+      success: function (res) {
+        if (res.data.errorNo == 0)
+        {
+          that.setData({
+            bindName: res.data.result.userName,
+            name: res.data.result.userName,
+            bindSchoolName: res.data.result.schoolName,
+            pickSchoolName: res.data.result.schoolName,
+            bindMajorName: res.data.result.majoName,
+            major: res.data.result.majoName,
+            bindPhone: res.data.result.phoneNum,
+            phone: res.data.result.phoneNum,
+          })
+          
+        }
+        else
+        {
+          wx.showModal({
+            title: '获取信息失败',
+            content: '服务器发生错误,无法获取您的个人信息！',
+            showCancel: false,
+            confirmText: '朕知道了',
+            success(res) {
+              //返回页面
+              wx.navigateBack
+                ({
+                  delta: 1
+                })
+            }
+          })
+        }
+      },
+      fail:function()
+      {
+        // 上线时恢复 wangyechao
+        wx.showModal({
+          title: '获取信息失败',
+          content: '网络发生错误,无法获取您的个人信息！',
+          showCancel: false,
+          confirmText: '朕知道了',
+          success(res) {
+            //返回页面
+            wx.navigateBack
+              ({
+                delta: 1
+              })
+          }
+        })
+      }
     })
-
   },
   //姓名手机号详细地址输入
   input: function (event) {
@@ -96,10 +131,6 @@ Page({
     } else if (val == "phone") {
       this.setData({
         phone: event.detail.value
-      })
-    } else if (val == "message") {
-      this.setData({
-        message: event.detail.value
       })
     }else if (val == "major") {
       this.setData({
@@ -114,6 +145,7 @@ Page({
     console.log(this.data)
     var data = this.data;
 
+  // wangyechao 
     if (!data.name) {
       wx.showToast({
         title: '请输入姓名',
@@ -130,6 +162,15 @@ Page({
       });
       return false;
     }
+    
+    if (data.school == '未绑定')
+    {
+      wx.showToast({
+        title: '请选择学校',
+        duration: 2000
+      });
+      return false;
+    }
 
     wx.showToast({
       title: '保存中...',
@@ -138,45 +179,52 @@ Page({
     });
     console.log(data);
     console.log('设置缓存')
-    //设置缓存
-    wx.setStorageSync("cardData", data);
-    //保存数据
+    
+    var seqId = util.wxuuid();
     wx.request({
       url: app.globalData.backIp + ':' + app.globalData.backPort,
       data: {
+        seqId:seqId,
         name: data.name,
         phone: data.phone,
         school: data.school,
         major: data.major,
-        openid: app.globalData.openid,
-        unionid: app.globalData.unionid
+        openId: app.globalData.openId,
+        unionId: app.globalData.unionId
       },
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header
       success: function (res) {
         console.log(res)
-
-        if (res.data.error_code == 0) {
-          //返回页面
-          wx.navigateBack({
-            delta: 1
+        wx.hideToast();
+        if (res.data.errorNo == 0) {
+          wx.showToast({
+            title: '操作成功',
           })
-        } else {
-          setTimeout(function () {
-            wx.showToast({
-              title: res.data.error_msg,
-              icon: 'success',
-              duration: 2000
-            })
-          }, 2000)
+          this.onLoad();
+        } else 
+        {
+          wx.showModal({
+            title: '无法更改',
+            content: '服务器发生错误,麻烦您重新提交一次，如果多次提交不行，请在公众号回复“客服”，加客服反馈',
+            showCancel: false,
+            confirmText: '朕知道了',
+          })
         }
         // success
       },
       fail: function () {
+        wx.hideToast();
         // fail
+        wx.showModal({
+          title: '无法更改',
+          content: '网络器发生错误,麻烦您重新提交一次，如果多次提交不行，请在公众号回复“客服”，加客服反馈',
+          showCancel: false,
+          confirmText: '朕知道了',
+        })
       },
       complete: function () {
-        wx.hideToast()
+       
       }
     })
   }
