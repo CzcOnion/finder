@@ -110,7 +110,7 @@ Page({
     console.log(seqId);
     //保存数据
     wx.request({
-      url: app.globalData.backIp + ':' + app.globalData.backPort,
+      url: 'http://192.168.1.106:8082/finder/cardmgr/cards',
       data: {
         cardnum: data.cardnum,
         cardtype: data.cardtype,

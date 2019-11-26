@@ -11,9 +11,13 @@ Page({
 
         //playingList
         wx.request({
-            url: 'http://json.bmbstack.com/cinemaList',
+          url: 'http://192.168.1.106:8082/finder/cardmgr/cards/' + app.globalData.openId,
             method: 'GET',
-            data: {},
+            data: {
+              seqId:util.wxuuid(),
+              openId:app.globalData.openId,
+              unionId:app.globalData.unionId
+            },
             header: {
                 'Accept': 'application/json'
             },
@@ -43,23 +47,23 @@ Page({
           var cardType = event.currentTarget.dataset.cardtype;
           // 获取cardId
           var cardId = event.currentTarget.dataset.cardid; // cardid 是小写的id
-      
+          console.log(cardId);
           wx.showToast({
             title: '正在解绑',
             icon: 'loading',
             duration: 5000,
           })
           wx.request({
-            url: 'http://localhost:8080/usermgr/untyingCard',
-            method: "POST",
+            url: 'http://192.168.1.106:8082/finder/cardmgr/card/' + cardId,
+            method: "DELETE",
             data: {
               seqId: seqId,
               openId:app.globalData.openId,
               unionId:app.globalData.unionId,
-              cardType:cardType,
-              cardId:cardId,
+              cardType:cardType
             },
             success: function (res) {
+              console.log(res.data)
               wx.hideToast();
               var error_code = res.data.error_code;
               if (res.data.errorNo == 0)

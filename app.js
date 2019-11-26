@@ -1,4 +1,5 @@
 //app.js
+var util = require('./utils/util.js');
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -13,28 +14,24 @@ App({
         if (res.code) {
           //发起网络请求
           wx.request({
-            url: "http://192.168.1.106:8080/finder/usermgr/login",
-            method:"POST",
+            url: "http://192.168.1.106:8080/finder/usermgr/check/"+res.code,
+            method:"GET",
             data: {
-              code: res.code
+              seqId: util.wxuuid()
             },
             success: function (res) {
               var app = getApp();
               console.log(res);
-<<<<<<< HEAD
               app.globalData.openId      = res.data.openId;
               app.globalData.unionId     = res.data.unionId;
               app.globalData.isRegister  = res.data.isRegister;
               app.globalData.hasBindCard = res.data.hasBindCard;
               app.globalData.openid = res.data.result.openId;
               app.globalData.unionid = res.data.result.unionId;
-
-=======
               app.globalData.openId      = res.data.result.openId;
               app.globalData.unionId = res.data.result.unionId;
               app.globalData.isRegister = res.data.result.isRegister;
               app.globalData.hasBindCard = res.data.result.hasBindCard;
->>>>>>> dev
             },
             fail: function (res) {
               console.log(res);

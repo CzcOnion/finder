@@ -61,15 +61,15 @@ Page({
     var seqId = util.wxuuid();
     // 获取信息
     wx.request({
-      url: app.globalData.backIp + ':' + app.globalData.backPort + "/getRegUserInfo",
+      url: 'http://192.168.1.106:8080/finder/usermgr/user/' + app.globalData.openId,
       data: {
-        sqeId: seqId,
-        openId: app.globalData.openId,
+        seqId: seqId,
         unionId: app.globalData.unionId,
       },
-      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header
       success: function (res) {
+        console.log("/finder/usermgr/user/"+res.data);
         if (res.data.errorNo == 0)
         {
           that.setData({
@@ -77,8 +77,8 @@ Page({
             name: res.data.result.userName,
             bindSchoolName: res.data.result.schoolName,
             pickSchoolName: res.data.result.schoolName,
-            bindMajorName: res.data.result.majoName,
-            major: res.data.result.majoName,
+            bindMajorName: res.data.result.majorName,
+            major: res.data.result.majorName,
             bindPhone: res.data.result.phoneNum,
             phone: res.data.result.phoneNum,
           })
@@ -174,7 +174,6 @@ Page({
     var that = this;
     console.log(this.data)
     var data = this.data;
-
   // wangyechao 
     if (!data.name) {
       wx.showToast({
@@ -212,7 +211,7 @@ Page({
     
     var seqId = util.wxuuid();
     wx.request({
-      url: "http://192.168.1.106:8080/finder/usermgr/update",
+      url: "http://192.168.1.106:8080/finder/usermgr/user/"+app.globalData.openId,
       data: {
         seqId:seqId,
         name: data.name,
@@ -222,13 +221,13 @@ Page({
         openId: app.globalData.openId,
         unionId: app.globalData.unionId,
         userName: data.name,
-        phoneNumber: data.phone,
+        phoneNum: data.phone,
         schoolName: data.school,
         majorName: data.major,
         openId: app.globalData.openid,
         unionId: app.globalData.unionid
       },
-      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      method: 'PUT', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header
       success: function (res) {
         console.log(res)
