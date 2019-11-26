@@ -19,7 +19,7 @@ Page({
             },
             success: function(res) {
                 console.log(res.data);
-                that.data.items = res.data
+                that.data.items = res.data.result.items
             }
         })
     },

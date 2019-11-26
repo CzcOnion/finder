@@ -21,6 +21,7 @@ App({
             success: function (res) {
               var app = getApp();
               console.log(res);
+<<<<<<< HEAD
               app.globalData.openId      = res.data.openId;
               app.globalData.unionId     = res.data.unionId;
               app.globalData.isRegister  = res.data.isRegister;
@@ -28,6 +29,12 @@ App({
               app.globalData.openid = res.data.result.openId;
               app.globalData.unionid = res.data.result.unionId;
 
+=======
+              app.globalData.openId      = res.data.result.openId;
+              app.globalData.unionId = res.data.result.unionId;
+              app.globalData.isRegister = res.data.result.isRegister;
+              app.globalData.hasBindCard = res.data.result.hasBindCard;
+>>>>>>> dev
             },
             fail: function (res) {
               console.log(res);
