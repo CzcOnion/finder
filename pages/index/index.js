@@ -1,4 +1,6 @@
 //index.js
+var log = require('../../utils/log.js') // 引用log.js文件
+
 //获取应用实例
 var app = getApp();
 Page({
@@ -47,6 +49,8 @@ Page({
       },
       fail: function () {
         // fail
+        log.error('error');
+        log.setFilterMsg('轮播图');
       },
       complete: function () {
         // complete

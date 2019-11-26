@@ -1,7 +1,7 @@
 //获取应用实例
 var tcity = require("../../utils/schools.js");
 var util = require('../../utils/util.js');
-
+var log = require("../../utils/log.js")
 var app = getApp()
 Page({
   data: {
@@ -86,6 +86,7 @@ Page({
         }
         else
         {
+          log.error("服务器发生错误" + ", seqId:" + seqId);
           wx.showModal({
             title: '获取信息失败',
             content: '服务器发生错误,无法获取您的个人信息！',
@@ -103,6 +104,7 @@ Page({
       },
       fail:function()
       {
+        log.error("网络发生错误" + ", seqId:" + seqId);
         // 上线时恢复 wangyechao
         wx.showModal({
           title: '获取信息失败',
