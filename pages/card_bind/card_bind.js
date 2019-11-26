@@ -1,5 +1,5 @@
 //获取应用实例
-var tcity = require("../../utils/cardtypes.js");
+var tcity = require("../../utils/cardNames.js");
 var util = require('../../utils/util.js');
 
 var app = getApp()

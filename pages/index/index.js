@@ -6,8 +6,8 @@ var app = getApp();
 Page({
   data: {
     imgUrls: [
-      '../../images/banner.png',
-      '../../images/banner1.jpeg',
+      '../../images/ad1.png',
+      '../../images/invit2.png',
     ],
     indicatorDots: true,//是否显示面板指示点
     autoplay: true, //是否自动切换

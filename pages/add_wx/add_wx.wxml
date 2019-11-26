@@ -1,0 +1,10 @@
+<!--index.wxml-->
+
+<view class="flex item" style="display: flex;">
+      <view class="flex_auto item_left">
+        <view><text class="title">添加客服微信反馈</text></view>
+        <view><text class="sub_title">{{num}}</text></view>
+      </view>
+</view>
+  <view><button class="editBtn" catchtap="copyBtn" >复制微信号</button></view>
+

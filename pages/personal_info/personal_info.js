@@ -15,7 +15,6 @@ Page({
     pickSchoolName: '', // 用户页面选择器的值 school在一开始应该与bindSchoolName一样 后面与pickSchoolName一样
     bindSchoolName: '未绑定',
     major:'',
-    majorCode:'',
     bindMajorName: '',
     index:0,
   },
@@ -47,49 +46,71 @@ Page({
       'schools':schools,
     })
     console.log('初始化完成');
-    var value = '';
-    //TODO 缓存
-    try {
-      value = wx.getStorageSync('cardData');
-      console.log('getStorageSyc');
-    } catch (e) {
-      // Do something when catch error
-    }
-    console.log('缓存');
-    console.log(value);
-    // 获取seqId
-    var seqId = util.wxuuid();
-    // 获取信息
-    wx.request({
-      url: 'http://192.168.1.106:8080/finder/usermgr/user/' + app.globalData.openId,
-      data: {
-        seqId: seqId,
-        unionId: app.globalData.unionId,
-      },
-      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      // header: {}, // 设置请求的 header
-      success: function (res) {
-        console.log("/finder/usermgr/user/"+res.data);
-        if (res.data.errorNo == 0)
+    wx.showToast({
+      title: '正在获取信息',
+      icon:'loading',
+      duration:100000,
+    })
+
+    // 用户有注册才去获取信息
+    if (app.globalData.isRegister == 1)//已经注册
+    {
+      // 获取seqId
+      var seqId = util.wxuuid();
+      log.info("get data: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId);
+      // 获取信息
+      wx.request({
+        url: 'http://192.168.1.106:8080/finder/usermgr/user/' + app.globalData.openId,
+        data: {
+          seqId: seqId,
+          unionId: app.globalData.unionId,
+        },
+        method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+        // header: {}, // 设置请求的 header
+        success: function (res) {
+          wx.hideToast();
+          log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", username:" + res.data.result.userName);
+          if (res.data.errorNo == 0)
+          {
+            that.setData({
+              bindName: res.data.result.userName,
+              name: res.data.result.userName,
+              bindSchoolName: res.data.result.schoolName,
+              pickSchoolName: res.data.result.schoolName,
+              school: res.data.result.schoolName,
+              bindMajorName: res.data.result.majorName,
+              major: res.data.result.majorName,
+              bindPhone: res.data.result.phoneNum,
+              phone: res.data.result.phoneNum,
+              
+            })
+            
+          }
+          else
+          {
+            log.error("服务器发生错误" + ", seqId:" + seqId);
+            wx.showModal({
+              title: '获取信息失败',
+              content: '服务器发生错误,无法获取您的个人信息！',
+              showCancel: false,
+              confirmText: '朕知道了',
+              success(res) {
+                //返回页面
+                wx.navigateBack
+                  ({
+                    delta: 1
+                  })
+              }
+            })
+          }
+        },
+        fail:function()
         {
-          that.setData({
-            bindName: res.data.result.userName,
-            name: res.data.result.userName,
-            bindSchoolName: res.data.result.schoolName,
-            pickSchoolName: res.data.result.schoolName,
-            bindMajorName: res.data.result.majorName,
-            major: res.data.result.majorName,
-            bindPhone: res.data.result.phoneNum,
-            phone: res.data.result.phoneNum,
-          })
-          
-        }
-        else
-        {
-          log.error("服务器发生错误" + ", seqId:" + seqId);
+          wx.hideToast();
+          log.error("网络发生错误" + ", seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId);
           wx.showModal({
             title: '获取信息失败',
-            content: '服务器发生错误,无法获取您的个人信息！',
+            content: '网络发生错误,无法获取您的个人信息！',
             showCancel: false,
             confirmText: '朕知道了',
             success(res) {
@@ -101,54 +122,12 @@ Page({
             }
           })
         }
-      },
-      fail:function()
-      {
-        log.error("网络发生错误" + ", seqId:" + seqId);
-        // 上线时恢复 wangyechao
-        wx.showModal({
-          title: '获取信息失败',
-          content: '网络发生错误,无法获取您的个人信息！',
-          showCancel: false,
-          confirmText: '朕知道了',
-          success(res) {
-            //返回页面
-            wx.navigateBack
-              ({
-                delta: 1
-              })
-          }
-        })
-      }
-    })
-    var name = '';
-    if (value.name != 'undefined') {
-      name = value.name;
+      })
     }
-    var phone = '';
-    if (value.phone != 'undefined') {
-      phone = value.phone;
+    else
+    {
+      wx.hideToast();
     }
-    var school = '华南理工大学';
-    if (value.school != 'undefined') {
-      school = value.school;
-    }
-    var major = '';
-    if (value.major != 'undefined') {
-      major = value.major;
-    }
-    var message = '';
-    console.log(name)
-    that.setData({
-      init_name: name,
-      name: name,
-      init_phone: phone,
-      phone: phone,
-      school:school,
-      init_message:message,
-      init_major:major,
-      major:major
-    })
   },
   //姓名手机号详细地址输入
   input: function (event) {
@@ -174,7 +153,6 @@ Page({
     var that = this;
     console.log(this.data)
     var data = this.data;
-  // wangyechao 
     if (!data.name) {
       wx.showToast({
         title: '请输入姓名',
@@ -210,6 +188,7 @@ Page({
     console.log('设置缓存')
     
     var seqId = util.wxuuid();
+    log.info("get data: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId);
     wx.request({
       url: "http://192.168.1.106:8080/finder/usermgr/user/"+app.globalData.openId,
       data: {
@@ -218,8 +197,6 @@ Page({
         phone: data.phone,
         school: data.school,
         major: data.major,
-        openId: app.globalData.openId,
-        unionId: app.globalData.unionId,
         userName: data.name,
         phoneNum: data.phone,
         schoolName: data.school,
@@ -230,13 +207,16 @@ Page({
       method: 'PUT', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header
       success: function (res) {
-        console.log(res)
+        log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", phone:" + res.data.result.phoneNum);
         wx.hideToast();
         if (res.data.errorNo == 0) {
           wx.showToast({
             title: '操作成功',
           })
-          this.onLoad();
+          // 注意要赋值
+          app.globalData.isRegister = 1;
+          // 用于刷新页面
+          this.setData({});
         } else 
         {
           wx.showModal({

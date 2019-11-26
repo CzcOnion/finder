@@ -49,11 +49,11 @@
 </view>
 <!--  -->
 <view class="silde clearfix">
-  <view class="b_r" catchtap="openwin" data-url="feedback">
-    <view class="imgCon b_r" catchtap="openwin" data-url="feedback">
-      <image src="../../images/yjfg.png" catchtap="openwin" data-url="feedback"></image>
+  <view class="b_r" catchtap="openwin" data-url="add_wx">
+    <view class="imgCon b_r" catchtap="openwin" data-url="add_wx">
+      <image src="../../images/yjfg.png" catchtap="openwin" data-url="add_wx"></image>
     </view>
-    <text catchtap="openwin" data-url="feedback">意见反馈</text>
+    <text catchtap="openwin" data-url="add_wx">意见反馈</text>
   </view>
   <view class="b_r" catchtap="openwin" data-url="serverFlow">
     <view class="imgCon" catchtap="openwin" data-url="serverFlow">

@@ -9,12 +9,15 @@ Page({
     onLoad: function (options) {
         var that = this
 
+      var seqId = util.wxuuid();
+        log.info("get cardlist: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId);
+
         //playingList
         wx.request({
           url: 'http://192.168.1.106:8082/finder/cardmgr/cards/' + app.globalData.openId,
             method: 'GET',
             data: {
-              seqId:util.wxuuid(),
+              seqId: seqId,
               openId:app.globalData.openId,
               unionId:app.globalData.unionId
             },
@@ -22,9 +25,13 @@ Page({
                 'Accept': 'application/json'
             },
             success: function(res) {
-                console.log(res.data);
-                that.data.items = res.data.result.items
-            }
+                log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", items:" + res.data.result.items);
+                that.data.items = res.data.result.items;
+            },
+            fail: function (res) 
+            {
+              log.error("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", items:" + res.data.result.items);
+            },
         })
     },
     onReady: function () {
@@ -43,16 +50,17 @@ Page({
           // 获取uuid
           var seqId = util.wxuuid();
           console.log(seqId);
-          // 获取cardType
-          var cardType = event.currentTarget.dataset.cardtype;
+          // 获取cardName
+          var cardName = event.currentTarget.dataset.cardName;
           // 获取cardId
           var cardId = event.currentTarget.dataset.cardid; // cardid 是小写的id
           console.log(cardId);
           wx.showToast({
             title: '正在解绑',
             icon: 'loading',
-            duration: 5000,
+            duration: 10000,
           })
+          log.info("untying card: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId + ", cardName:" + cardName + ", cardId:" + cardId);
           wx.request({
             url: 'http://192.168.1.106:8082/finder/cardmgr/card/' + cardId,
             method: "DELETE",
@@ -60,18 +68,21 @@ Page({
               seqId: seqId,
               openId:app.globalData.openId,
               unionId:app.globalData.unionId,
-              cardType:cardType
+              cardName:cardName
             },
             success: function (res) {
               console.log(res.data)
               wx.hideToast();
-              var error_code = res.data.error_code;
               if (res.data.errorNo == 0)
               {
                 wx.showToast({
                   title: '解绑成功',
                 })
-                this.onLoad();
+                log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + "hasBindCard:" + res.data.result.hasBindCard);
+                // 更新全局变量
+                app.globalData.hasBindCard = res.data.result.hasBindCard;
+                // 刷新
+                this.setdata({});
               }
               else
               {
@@ -82,6 +93,7 @@ Page({
                   confirmText: '朕知道了',
                   
                 })
+                log.error("解绑不成功 res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", cardName:" + cardName + ", cardId:" + cardId);
               }
             },
             fail: function (res) {
@@ -93,6 +105,7 @@ Page({
                 confirmText: '朕知道了',
             
               })
+              log.error("网络不成功 seqId:" + seqId + ", cardName:" + cardName + ", cardId:" + cardId);
             },
             complete: function (res) {
               //返回页面

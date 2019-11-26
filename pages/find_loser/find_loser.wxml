@@ -3,9 +3,9 @@
  <view class="editCon_row border_b">
     <text class="text" style="margin-top:2rpx;">卡类型</text>
     <view class="container">
-        <picker bindchange="bindPickerChange_card" value="{{card_index}}" range="{{cardtypes}}">
+        <picker bindchange="bindPickerChange_card" value="{{card_index}}" range="{{cardNames}}">
           <view class="picker">
-            <text>{{cardtypes[card_index]}}</text>
+            <text>{{cardNames[card_index]}}</text>
           </view>
         </picker>
         <!-- <view catchtap="open">{{school}}</view> -->
@@ -15,12 +15,12 @@
 
   <view class="editCon_row border_b">
     <text class="text">卡号</text>
-    <input placeholder="(必填)失卡人的卡号" bindinput="input" data-type="cardnum" value="{{cardnum}}"/>
+    <input placeholder="(必填)失卡人的卡号" bindinput="input" data-type="cardid" value="{{cardId}}"/>
   </view>
   
   <view class="editCon_row border_b">
     <text class="text">姓名</text>
-    <input placeholder="(选填)失卡人的姓名" bindinput="input" data-type="name" value="{{init_name}}" />
+    <input placeholder="(必填)失卡人的姓名" bindinput="input" data-type="name" value="{{loserName}}" />
   </view>
 
    <view class="editCon_row border_b">
@@ -38,7 +38,7 @@
 
   <view class="editCon_row border_b">
     <text class="text">专业</text>
-    <input type="text" placeholder="(选填)失卡人专业" bindinput="input" data-type="major" value="{{init_major}}" />
+    <input type="text" placeholder="(选填)失卡人专业" bindinput="input" data-type="major" value="{{majorName}}" />
   </view>
 
 

@@ -19,7 +19,7 @@
   <block wx:for="{{items}}" wx:for-index="index" wx:for-item="item">
     <view class="flex item" style="display: flex;">
       <view class="flex_auto item_left">
-        <view><text class="title">{{item.cardType}}</text></view>
+        <view><text class="title">{{item.cardName}}</text></view>
         <view><text class="sub_title">{{item.cardId}}</text></view>
       </view>
       <view class="item_right">
@@ -34,7 +34,7 @@
         <view><text class="sub_title">877554</text></view>
       </view>
       <view class="item_right">
-        <view class="editBtn" bindtap="untying" data-cardtype = "大学城一卡通" data-cardid = "877554">解绑</view>
+        <view class="editBtn" bindtap="untying" data-cardName = "大学城一卡通" data-cardid = "877554">解绑</view>
       </view>
     </view>
   <view class="flex item_bottom" style="display: flex;">
