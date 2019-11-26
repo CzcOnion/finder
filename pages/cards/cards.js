@@ -1,4 +1,5 @@
 var util = require('../../utils/util.js');
+var log = require('../../utils/log.js');
 var app = getApp();
 
 Page({
@@ -7,32 +8,32 @@ Page({
     },
     //事件处理函数
     onLoad: function (options) {
-        var that = this
+      var that = this
 
       var seqId = util.wxuuid();
-        log.info("get cardlist: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId);
+      log.info("get cardlist: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId);
 
-        //playingList
-        wx.request({
-          url: 'http://192.168.1.106:8082/finder/cardmgr/cards/' + app.globalData.openId,
-            method: 'GET',
-            data: {
-              seqId: seqId,
-              openId:app.globalData.openId,
-              unionId:app.globalData.unionId
-            },
-            header: {
-                'Accept': 'application/json'
-            },
-            success: function(res) {
-                log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", items:" + res.data.result.items);
-                that.data.items = res.data.result.items;
-            },
-            fail: function (res) 
-            {
-              log.error("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", items:" + res.data.result.items);
-            },
-        })
+      //playingList
+      wx.request({
+        url: 'http://192.168.1.106:8082/finder/cardmgr/cards/' + app.globalData.openId,
+          method: 'GET',
+          data: {
+            seqId: seqId,
+            openId:app.globalData.openId,
+            unionId:app.globalData.unionId
+          },
+          header: {
+              'Accept': 'application/json'
+          },
+          success: function(res) {
+              log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", items:" + res.data.result.items);
+              that.data.items = res.data.result.items;
+          },
+          fail: function (res) 
+          {
+            log.error("无法拉取卡片，网络发生错误 seqId:" + seqId);
+          },
+      })
     },
     onReady: function () {
         wx.setNavigationBarTitle({

@@ -3,9 +3,9 @@
  <view class="editCon_row border_b">
     <text class="text" style="margin-top:2rpx;">卡类型</text>
     <view class="container">
-        <picker bindchange="bindPickerChange_card" value="{{card_index}}" range="{{cardtypes}}">
+        <picker bindchange="bindPickerChange_card" value="{{card_index}}" range="{{cardNames}}">
           <view class="picker">
-            <text>{{cardtypes[card_index]}}</text>
+            <text>{{cardNames[card_index]}}</text>
           </view>
         </picker>
        
@@ -15,7 +15,7 @@
 
   <view class="editCon_row border_b">
     <text class="text">卡号</text>
-    <input placeholder="你的卡号" bindinput="input" data-type="cardnum" value="{{cardnum}}"/>
+    <input placeholder="你的卡号" bindinput="input" data-type="cardId" value="{{cardId}}"/>
   </view>
 
 </view>

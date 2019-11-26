@@ -1,14 +1,14 @@
 //获取应用实例
 var tcity = require("../../utils/cardNames.js");
 var util = require('../../utils/util.js');
-
+var log = require('../../utils/log.js');
 var app = getApp()
 Page({
   data: {
-    cardnum: '',//卡号
+    cardId: '',//卡号
     cardData:[],
-    cardtypes:[],//卡片集合
-    cardtype: '',//卡片
+    cardNames:[],//卡片集合
+    cardName: '',//卡片
     card_index:0,
     cardCode:0,
     
@@ -23,7 +23,7 @@ Page({
   },
   open: function () {
     // this.setData({
-    //   cardtypes:cardtypes,
+    //   cardNames:cardNames,
     // })
   },
   onLoad: function (options) {
@@ -32,27 +32,15 @@ Page({
     console.log("onLoad");
     tcity.init(that);
     var cardData = that.data.cardData;
-    const cardtypes = [];
+    const cardNames = [];
     for (let i = 0; i < cardData.length; i++) {
-      cardtypes.push(cardData[i].name);
+      cardNames.push(cardData[i].name);
     }
 
-    console.log('初始化完成');
-    var value = '';
-    //TODO 缓存
-    try {
-      value = wx.getStorageSync('cardData');
-      console.log('getStorageSyc');
-    } catch (e) {
-      // Do something when catch error
-    }
-    console.log('缓存');
-    console.log(value);
-
-    var cardnum = '';
+    var cardId = '';
     that.setData({
-      cardnum: cardnum,
-      cardtypes: cardtypes,
+      cardId: cardId,
+      cardNames: cardNames,
     })
 
   },
@@ -61,9 +49,9 @@ Page({
     
     var val = event.target.dataset.type;
     console.log('input()'+val);
-    if (val == "cardnum") {
+    if (val == "cardId") {
       this.setData({
-        cardnum: event.detail.value
+        cardId: event.detail.value
       })
      
     } 
@@ -92,7 +80,7 @@ Page({
     var that = this;
     console.log(this.data)
     var data = this.data;
-    if (!data.cardnum) {
+    if (!data.cardId) {
       wx.showToast({
         title: '请输入卡号',
         icon: '12',
@@ -107,13 +95,13 @@ Page({
     })
     // 获取uuid
     var seqId = util.wxuuid();
-    console.log(seqId);
+    log.info("bind card: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId);
     //保存数据
     wx.request({
       url: 'http://192.168.1.106:8082/finder/cardmgr/cards',
       data: {
-        cardnum: data.cardnum,
-        cardtype: data.cardtype,
+        cardId: data.cardId,
+        cardName: data.cardName,
         cardCode: data.cardCode,
         openId: app.globalData.openId,
         unionId: app.globalData.unionId,
