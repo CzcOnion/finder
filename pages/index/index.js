@@ -16,7 +16,7 @@ Page({
     circular: true, //是否采用衔接滑动
     noticeList:[
       {
-        context: "卡号:3901160315 \n 姓名:陈至聪 \n 学校: 中南大学"
+        context: "卡号:3901160315 \n 姓名:陈 \n 学校: 中南大学"
       },
       {
         context: "这是第二条公告"

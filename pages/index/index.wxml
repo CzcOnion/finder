@@ -24,7 +24,7 @@
       <block wx:for='{{noticeList}}' wx:key='unique'>
         <navigator url='../../images/notice.png' hover-class='none'>
           <swiper-item>
-            <view class='swiper-context'>{{item.context}}</view>
+            <view class='swiper-context'><text>{{item.context}}</text></view>
           </swiper-item>
         </navigator>
       </block>

@@ -204,7 +204,7 @@ Page({
         openId: app.globalData.openid,
         unionId: app.globalData.unionid
       },
-      method: 'PUT', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header
       success: function (res) {
         log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", phone:" + res.data.result.phoneNum);
