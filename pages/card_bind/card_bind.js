@@ -18,7 +18,8 @@ Page({
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       card_index: e.detail.value,
-      cardCode: this.data.cardData[e.detail.value].code
+      cardCode: this.data.cardData[e.detail.value].code,
+      cardName: this.data.cardData[e.detail.value].name,
     })
   },
   open: function () {
@@ -111,11 +112,15 @@ Page({
       // header: {}, // 设置请求的 header
       success: function (res) {
         wx.hideToast();
-        console.log(res)
-        if ((res.data.errorNo == 0) && (res.data.result.errorCode == 1)){
-          
+        console.log(res);
+        log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo);
+        if (res.data.errorNo == 0){
+          wx.showToast({
+            title: '绑定成功',
+          })
         } 
         else{
+          log.error("server error!bind error: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo);
           wx.showModal({
             title: '绑定不成功',
             content: '服务器生病了，绑定不成功，请重试！如果多次不成功请联系客服！',
@@ -134,6 +139,7 @@ Page({
       },
       fail: function () {
         wx.hideToast();
+        log.error("网络出问题!bind error: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo);
         wx.showModal({
           title: '绑定不成功',
           content: '网络出问题，绑定不成功，请重试！如果多次不成功请联系客服！',

@@ -216,7 +216,7 @@ Page({
           // 注意要赋值
           app.globalData.isRegister = 1;
           // 用于刷新页面
-          this.setData({});
+          that.setData({});
         } else 
         {
           wx.showModal({
