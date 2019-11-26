@@ -121,6 +121,34 @@ Page({
         })
       }
     })
+    var name = '';
+    if (value.name != 'undefined') {
+      name = value.name;
+    }
+    var phone = '';
+    if (value.phone != 'undefined') {
+      phone = value.phone;
+    }
+    var school = '华南理工大学';
+    if (value.school != 'undefined') {
+      school = value.school;
+    }
+    var major = '';
+    if (value.major != 'undefined') {
+      major = value.major;
+    }
+    var message = '';
+    console.log(name)
+    that.setData({
+      init_name: name,
+      name: name,
+      init_phone: phone,
+      phone: phone,
+      school:school,
+      init_message:message,
+      init_major:major,
+      major:major
+    })
   },
   //姓名手机号详细地址输入
   input: function (event) {
@@ -184,7 +212,7 @@ Page({
     
     var seqId = util.wxuuid();
     wx.request({
-      url: app.globalData.backIp + ':' + app.globalData.backPort,
+      url: "http://192.168.1.106:8080/finder/usermgr/update",
       data: {
         seqId:seqId,
         name: data.name,
@@ -192,7 +220,13 @@ Page({
         school: data.school,
         major: data.major,
         openId: app.globalData.openId,
-        unionId: app.globalData.unionId
+        unionId: app.globalData.unionId,
+        userName: data.name,
+        phoneNumber: data.phone,
+        schoolName: data.school,
+        majorName: data.major,
+        openId: app.globalData.openid,
+        unionId: app.globalData.unionid
       },
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header

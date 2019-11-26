@@ -13,7 +13,7 @@ App({
         if (res.code) {
           //发起网络请求
           wx.request({
-            url: "http://localhost:8080/usermgr/login",
+            url: "http://192.168.1.106:8080/finder/usermgr/login",
             method:"POST",
             data: {
               code: res.code
@@ -25,6 +25,9 @@ App({
               app.globalData.unionId     = res.data.unionId;
               app.globalData.isRegister  = res.data.isRegister;
               app.globalData.hasBindCard = res.data.hasBindCard;
+              app.globalData.openid = res.data.result.openId;
+              app.globalData.unionid = res.data.result.unionId;
+
             },
             fail: function (res) {
               console.log(res);
