@@ -139,7 +139,6 @@ Page({
       data: {
         cardId: data.cardId,
         cardName: data.cardName,
-        cardCode: data.cardCode,
         openId: app.globalData.openId,
         unionId: app.globalData.unionId,
         loserName: data.loserName,

@@ -10,7 +10,7 @@
 <view class="flow">
   <image src="../../images/flow3.png"></image>
   <view class="contain">
-    <view class="btn" bindtap="openwin" data-url="check_in">失卡登记</view>
+    <view class="btn" bindtap="openwin" data-url="lost_card">失卡登记</view>
     <view class="btn" bindtap="openwinTab" data-url="find_loser">拾卡登记</view>
   </view>
 </view>

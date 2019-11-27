@@ -8,8 +8,8 @@ Page({
     phone: '',//电话号码
     message: '',//备注
     schools:[],//学校集合
-    school:'',//学校
-    major:'',//专业
+    schoolName:'',//学校
+    majorName:'',//专业
     card_id:'',//卡号
     index:0,
   },
@@ -165,9 +165,9 @@ Page({
       data: {
         name: data.name,
         phone: data.phone,
-        province: data.province,
-        address: data.address,
-        city: data.city,
+        //province: data.province,
+        cardId: data.card_id,
+        cardName: data.city,
         district: data.county,
         userID: app.globalData.userid,
         isOn: 1, //1正常，0删除
@@ -178,7 +178,7 @@ Page({
       success: function (res) {
         console.log(res)
 
-        if (res.data.error_code == 0) {
+        if (res.data.errorNo == 0) {
           //返回页面
           wx.navigateBack({
             delta: 1

@@ -4,7 +4,9 @@ var app = getApp();
 
 Page({
     data: {
-        title: ''
+        title: '',
+      showText: [" ","已挂失"],
+      showText2:['解挂','挂失'],
     },
     //事件处理函数
     onLoad: function (options) {
@@ -122,12 +124,83 @@ Page({
         }
       } 
     })
+    },
+  lostcard: function (event) {
+    var that = this;
+    var data = this.data;
+    // 获取uuid
+    var seqId = util.wxuuid();
+    console.log(seqId);
+    // 获取cardName
+    var cardName = event.currentTarget.dataset.cardName;
+    // 获取cardId
+    var cardId = event.currentTarget.dataset.cardid; // cardid 是小写的id
+    wx.showToast({
+      title: '正在挂失',
+      icon: 'loading',
+      duration: 10000,
+    })
+    log.info("untying card: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId + ", cardName:" + cardName + ", cardId:" + cardId);
+    wx.request({
+      url: 'http://192.168.1.106:8082/finder/cardmgr/losscard/' + cardId,
+      method: "PUT",
+      data: {
+        seqId: seqId,
+        openId: app.globalData.openId,
+        unionId: app.globalData.unionId,
+        cardName: cardName,
+        cardId: cardId,
+      },
+      success: function (res) {
+        console.log(res.data)
+        wx.hideToast();
+        if (res.data.errorNo == 0) {
+          wx.showToast({
+            title: '挂失成功',
+          })
+          log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + "hasBindCard:" + res.data.result.hasBindCard);
+          
+          // 刷新
+          this.setdata({});
+        }
+        else {
+          wx.showModal({
+            title: '挂失未成功',
+            content: '挂失不成功，请重试，如果还不成功可联系客服处理！',
+            showCancel: false,
+            confirmText: '朕知道了',
+
+          })
+          log.error("挂失不成功 res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", cardName:" + cardName + ", cardId:" + cardId);
+        }
+      },
+      fail: function (res) {
+        wx.hideToast();
+        wx.showModal({
+          title: '挂失未成功',
+          content: '网络发生错误，无法挂失，请稍后再试试！',
+          showCancel: false,
+          confirmText: '朕知道了',
+
+        })
+        log.error("网络不成功 seqId:" + seqId + ", cardName:" + cardName + ", cardId:" + cardId);
+      },
+      complete: function (res) 
+      {
+      },
+    })
+   },
+  
+  
+  divination:function(event){
+    
   },
   openwin: function (event) { //跳转页面
-    console.log(event)
+
     var path = event.target.dataset.url;
     wx.navigateTo({
       url: '../' + path + '/' + path
     })
-  },
+    },
+
 })

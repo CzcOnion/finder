@@ -1,6 +1,6 @@
 <view class="top">
   <view class="imgCon">
-    <image src="{{userInfo.avatarUrl}}"></image>
+    <image src="../../images/logo2.png"></image>
   </view>
   <view class="name">{{userInfo.nickName}}</view>
 </view>

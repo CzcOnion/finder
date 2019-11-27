@@ -193,10 +193,6 @@ Page({
       url: "http://192.168.1.106:8080/finder/usermgr/user/"+app.globalData.openId,
       data: {
         seqId:seqId,
-        name: data.name,
-        phone: data.phone,
-        school: data.school,
-        major: data.major,
         userName: data.name,
         phoneNum: data.phone,
         schoolName: data.school,

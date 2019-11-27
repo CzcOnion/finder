@@ -32,8 +32,38 @@
   margin: 2px 0px;
 }
 
-.item_right {
+.item_right .tag {
+  margin-top: 30px;
+  border: 1px solid #29cc6d;
+  border-radius: 2px;
+  color: #29cc6d;
   display: inline-block;
+  padding: 2px 4px;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+}
+
+.instatus {
+    margin:5px;
+}
+
+.notstatus {
+    margin:5px;
+    border: 1px solid #f04705;
+    border-radius: 2px;
+    color: #f04705;
+    display: inline-block;
+    padding: 1px 2px;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+}
+
+.item_right {
+  flex-direction: column; 
+  flex-wrap:wrap;
+  justify-content:space-around;
   text-align: center;
 }
 

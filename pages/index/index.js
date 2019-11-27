@@ -6,7 +6,7 @@ var app = getApp();
 Page({
   data: {
     imgUrls: [
-      '../../images/ad1.png',
+      '../../images/banner2.png',
       '../../images/invit2.png',
     ],
     indicatorDots: true,//是否显示面板指示点

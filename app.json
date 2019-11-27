@@ -6,7 +6,7 @@
     "pages/fqa/fqa",
     "pages/serverFlow/serverFlow",
     "pages/logs/logs",
-    "pages/check_in/check_in",
+    "pages/lost_card/lost_card",
     "pages/detail/detail",
     "pages/personal_info/personal_info",
     "pages/find_loser/find_loser",
