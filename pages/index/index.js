@@ -36,6 +36,7 @@ Page({
       method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header
       success: function (res) {
+        log.info("seqId:" + seqId + ", length:" + res.data.result.imgUrls.length)
         var carousel = res.data.result.imgUrls;
         if (carousel.length) {
           var tampArr = [];
@@ -45,12 +46,18 @@ Page({
           that.setData({
             imgUrls: tampArr
           })
+          
         }
+        else
+        {
+          // default images
+          imgUrls.push('../../images/banner2.png');
+          imgUrls.push('../../images/invit2.png');
+        }
+        
         // success
       },
       fail: function () {
-        // fail
-        log.error('error');
         log.error('获取广告图错误,' + 'seqId:' + seqId);
       },
       complete: function () {
@@ -58,6 +65,7 @@ Page({
       }
     })
     
+    // 获取失卡公告
     wx.request({
       url: app.globalData.backIp + app.globalData.backPort,
       data: {
@@ -66,14 +74,15 @@ Page({
       method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header
       success: function (res) {
-        var carousel = res.data.result.imgUrls;
+        var carousel = res.data.result.noticeList;
+        log.info("seqId:" + seqId + ", length:" + res.data.result.noticeList.length)
         if (carousel.length) {
           var tampArr = [];
           for (var i = 0; i < carousel.length; i++) {
             tampArr.push(carousel[i])
           }
           that.setData({
-            imgUrls: tampArr
+            noticeList: tampArr
           })
         }
         // success

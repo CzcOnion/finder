@@ -162,13 +162,32 @@ Page({
       return false;
     }
 
-    if (!data.phone) {
+    if (data.phone.length == 0) {
       wx.showToast({
-        title: '请输入手机号',
+        title: '请输入手机号！',
+        icon: 'success',
         duration: 2000
-      });
+      })
       return false;
     }
+    if (mobile.length != 11) {
+      wx.showToast({
+        title: '手机号长度有误！',
+        icon: 'success',
+        duration: 2000
+      })
+      return false;
+    }
+    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+    if (!myreg.test(mobile)) {
+      wx.showToast({
+        title: '手机号有误！',
+        icon: 'success',
+        duration: 2000
+      })
+      return false;
+    }
+
     
     if (data.school == '未绑定')
     {
@@ -229,7 +248,7 @@ Page({
         // fail
         wx.showModal({
           title: '无法更改',
-          content: '网络器发生错误,麻烦您重新提交一次，如果多次提交不行，请在公众号回复“客服”，加客服反馈',
+          content: '网络发生错误,麻烦您重新提交一次，如果多次提交不行，请在公众号回复“客服”，加客服反馈',
           showCancel: false,
           confirmText: '朕知道了',
         })

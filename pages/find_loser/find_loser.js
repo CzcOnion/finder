@@ -2,7 +2,7 @@
 var tcity = require("../../utils/cardNames.js");
 var tcity2 = require("../../utils/schools.js");
 var util = require('../../utils/util.js');
-
+var log = require('../../utils/log.js');
 var app = getApp()
 Page({
   data: {
@@ -204,7 +204,7 @@ Page({
         // success
       },
       fail: function () {
-        log.error("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", statusCode:" + res.data.result.statusCode);
+        log.error("return res: seqId:" +seqId);
         wx.hideLoading();
 
         wx.showModal({
@@ -222,7 +222,7 @@ Page({
         })
       },
       complete: function () {
-        //wx.hideToast()
+        wx.hideLoading();
       }
     })
   }

@@ -10,7 +10,7 @@ Page({
     },
     //事件处理函数
     onLoad: function (options) {
-      var that = this
+      var that = this;
 
       var seqId = util.wxuuid();
       log.info("get cardlist: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId);
@@ -133,7 +133,7 @@ Page({
       success(res)
         {
         var that = this;
-        var data = this.data;
+        //var data = that.data;
         // 获取uuid
         var seqId = util.wxuuid();
         console.log(seqId);
@@ -207,55 +207,57 @@ Page({
         title: '解挂卡片',
         content: '你确定已经找到卡片或者补办，而解挂该卡片吗？',
         success(res) {
-          var that = this;
-          var data = this.data;
-          // 获取uuid
-          var seqId = util.wxuuid();
-          console.log(seqId);
-          // 获取cardName
-          var cardName = event.currentTarget.dataset.cardName;
-          // 获取cardId
-          var cardId = event.currentTarget.dataset.cardid; // cardid 是小写的id
-          wx.showToast({
-            title: '正在解挂',
-            icon: 'loading',
-            duration: 10000,
-          })
-          log.info("untie card: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId + ", cardName:" + cardName + ", cardId:" + cardId);
-          wx.request
-            ({
-              url: 'http://192.168.1.106:8082/finder/cardmgr/losscard/' + cardId,
-              method: "DELETE",
-              data: {
-                seqId: seqId,
-                openId: app.globalData.openId,
-                unionId: app.globalData.unionId,
-                cardName: cardName,
-                cardId: cardId,
-              },
-              success: function (res) {
-                console.log(res.data)
-                wx.hideToast();
-                if (res.data.errorNo == 0) {
-                  wx.showToast({
-                    title: '挂失成功',
-                  })
-                  log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo);
+          if (res.confirm)
+          {
+            var that = this;
+            //var data = this.data;
+            // 获取uuid
+            var seqId = util.wxuuid();
+            console.log(seqId);
+            // 获取cardName
+            var cardName = event.currentTarget.dataset.cardName;
+            // 获取cardId
+            var cardId = event.currentTarget.dataset.cardid; // cardid 是小写的id
+            wx.showToast({
+              title: '正在解挂',
+              icon: 'loading',
+              duration: 100000,
+            })
+            log.info("untie card: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId + ", cardName:" + cardName + ", cardId:" + cardId);
+            wx.request
+              ({
+                url: 'http://192.168.1.106:8082/finder/cardmgr/losscard/' + cardId,
+                method: "DELETE",
+                data: {
+                  seqId: seqId,
+                  openId: app.globalData.openId,
+                  unionId: app.globalData.unionId,
+                  cardName: cardName,
+                  cardId: cardId,
+                },
+                success: function (res) {
+                  console.log(res.data)
+                  wx.hideToast();
+                  if (res.data.errorNo == 0) {
+                    wx.showToast({
+                      title: '挂失成功',
+                    })
+                    log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo);
 
-                  // 刷新
-                  this.setdata({});
-                }
-                else {
-                  wx.showModal({
-                    title: '解挂未成功',
-                    content: '解挂不成功，请重试，如果还不成功可联系客服处理！',
-                    showCancel: false,
-                    confirmText: '朕知道了',
+                    // 刷新
+                    this.setdata({});
+                  }
+                  else {
+                    wx.showModal({
+                      title: '解挂未成功',
+                      content: '解挂不成功，请重试，如果还不成功可联系客服处理！',
+                      showCancel: false,
+                      confirmText: '朕知道了',
 
-                  })
-                  log.error("解挂不成功 res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", cardName:" + cardName + ", cardId:" + cardId);
-                }
-              },
+                    })
+                    log.error("解挂不成功 res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", cardName:" + cardName + ", cardId:" + cardId);
+                  }
+                },
               fail: function (res) {
                 wx.hideToast();
                 wx.showModal({
@@ -270,6 +272,11 @@ Page({
               complete: function (res) {
               },
             })
+          }
+          else if(res.cancel)
+          {
+
+          }
         }
       })
   },
