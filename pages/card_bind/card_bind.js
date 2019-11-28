@@ -155,7 +155,10 @@ Page({
         })
       },
       complete: function () {
-        //wx.hideToast()
+        wx.navigateBack
+          ({
+            delta: 1
+          })
       }
     })
   }

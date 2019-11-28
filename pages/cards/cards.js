@@ -30,7 +30,9 @@ Page({
           },
           success: function(res) {
               log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", items:" + res.data.result.items);
-              that.data.items = res.data.result.items;
+              this.setdata({
+                items: res.data.result.items,
+              })
           },
           fail: function (res) 
           {
