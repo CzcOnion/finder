@@ -30,7 +30,7 @@ Page({
           },
           success: function(res) {
               log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", items:" + res.data.result.items);
-              that.setdata({
+              that.setData({
                 items: res.data.result.items,
               })
           },
@@ -88,7 +88,7 @@ Page({
                 // 更新全局变量
                 app.globalData.hasBindCard = res.data.result.hasBindCard;
                 // 刷新
-                this.setdata({});
+                this.setData({});
               }
               else
               {
@@ -171,7 +171,7 @@ Page({
               log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + "hasBindCard:" + res.data.result.hasBindCard);
               
               // 刷新
-              this.setdata({});
+              this.setData({});
             }
             else {
               wx.showModal({
@@ -248,7 +248,7 @@ Page({
                     log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo);
 
                     // 刷新
-                    this.setdata({});
+                    this.setData({});
                   }
                   else {
                     wx.showModal({
