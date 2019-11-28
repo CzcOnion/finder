@@ -42,7 +42,7 @@
       </view>
       <view class=" item_right" style="display: flex;">
         <view class="editBtn" bindtap="untying" data-cardName = "大学城一卡通" data-cardid = "877554">解绑</view>
-        <view class="editBtn" bindtap="{{item.cardStatus == 0? 'lostcard':'divination'}}" data-cardName = "大学城一卡通" data-cardid = "877554">{{showText2[1]}}</view>
+        <view class="editBtn" bindtap="{{item.cardStatus == 0? 'lostcard':'untie'}}" data-cardName = "大学城一卡通" data-cardid = "877554">{{showText2[1]}}</view>
       </view>
       
     </view>

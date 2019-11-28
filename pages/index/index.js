@@ -1,6 +1,6 @@
 //index.js
 var log = require('../../utils/log.js') // 引用log.js文件
-
+var util = require('../../utils/util.js')
 //获取应用实例
 var app = getApp();
 Page({
@@ -25,19 +25,22 @@ Page({
   },
   onLoad: function (options) {
     var that = this;
+    var seqId = util.wxuuid();;
     // 生命周期函数--监听页面加载
     //轮播图
     wx.request({
-      url: app.globalData.serverUrl + 'getCarousel',
-      data: {},
+      url: app.globalData.backIp + app.globalData.backPort,
+      data: {
+        seqId:seqId,
+      },
       method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header
       success: function (res) {
-        var carousel = res.data.data.carousel;
+        var carousel = res.data.result.imgUrls;
         if (carousel.length) {
           var tampArr = [];
           for (var i = 0; i < carousel.length; i++) {
-            tampArr.push(carousel[i].uploadFiles)
+            tampArr.push(carousel[i])
           }
           that.setData({
             imgUrls: tampArr
@@ -48,39 +51,37 @@ Page({
       fail: function () {
         // fail
         log.error('error');
-        log.setFilterMsg('轮播图');
+        log.error('获取广告图错误,' + 'seqId:' + seqId);
       },
       complete: function () {
         // complete
       }
     })
-    //热门手机
+    
     wx.request({
-      url: app.globalData.serverUrl + 'getRepairHot',
-      data: {},
+      url: app.globalData.backIp + app.globalData.backPort,
+      data: {
+        seqId: seqId,
+      },
       method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header
       success: function (res) {
-        console.log(res);
-        var repairHot = res.data.data.repairHot;
-        that.setData({
-          hotimg1: repairHot[0].imageUrl,
-          hotimg2: repairHot[1].imageUrl,
-          hotimg3: repairHot[2].imageUrl,
-          brandID1: repairHot[0].brandID,
-          brandID2: repairHot[1].brandID,
-          brandID3: repairHot[2].brandID,
-          modelID1: repairHot[0].modelID,
-          modelID2: repairHot[1].modelID,
-          modelID3: repairHot[2].modelID,
-          hottext1: repairHot[0].modelName,
-          hottext2: repairHot[1].modelName,
-          hottext3: repairHot[2].modelName,
-        })
+        var carousel = res.data.result.imgUrls;
+        if (carousel.length) {
+          var tampArr = [];
+          for (var i = 0; i < carousel.length; i++) {
+            tampArr.push(carousel[i])
+          }
+          that.setData({
+            imgUrls: tampArr
+          })
+        }
         // success
       },
       fail: function () {
         // fail
+        log.error('error');
+        log.error('获取广告图错误,' + 'seqId:' + seqId);
       },
       complete: function () {
         // complete

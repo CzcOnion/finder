@@ -10,7 +10,7 @@
 <view class="flow">
   <image src="../../images/flow3.png"></image>
   <view class="contain">
-    <view class="btn" bindtap="openwin" data-url="lost_card">失卡登记</view>
+    <view class="btn" bindtap="openwin" data-url="cards">失卡登记</view>
     <view class="btn" bindtap="openwinTab" data-url="find_loser">拾卡登记</view>
   </view>
 </view>
@@ -55,11 +55,11 @@
     </view>
     <text catchtap="openwin" data-url="add_wx">意见反馈</text>
   </view>
-  <view class="b_r" catchtap="openwin" data-url="serverFlow">
-    <view class="imgCon" catchtap="openwin" data-url="serverFlow">
-      <image src="../../images/fwlc.png" catchtap="openwin" data-url="serverFlow"></image>
+  <view class="b_r" catchtap="openwin" data-url="registerFlow">
+    <view class="imgCon" catchtap="openwin" data-url="registerFlow">
+      <image src="../../images/fwlc.png" catchtap="openwin" data-url="registerFlow"></image>
     </view>
-    <text catchtap="openwin" data-url="serverFlow">服务流程</text>
+    <text catchtap="openwin" data-url="registerFlow">服务流程</text>
   </view>
   <view catchtap="openwin" data-url="fqa">
     <view class="imgCon" catchtap="openwin" data-url="fqa">

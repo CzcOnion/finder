@@ -4,7 +4,7 @@
     "pages/my/my",
     "pages/feedback/feedback",
     "pages/fqa/fqa",
-    "pages/serverFlow/serverFlow",
+    "pages/registerFlow/registerFlow",
     "pages/logs/logs",
     "pages/lost_card/lost_card",
     "pages/detail/detail",
