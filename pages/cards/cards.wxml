@@ -20,16 +20,14 @@
     <view class="flex item" style="display: flex;">
       <view class="flex_auto item_left">
         <view><text class="title">{{item.cardName}}</text></view>
-        <view>
-          <text class="sub_title">{{item.cardId}}</text>  
-        </view>
+        <view><text class="sub_title">{{item.cardId}}</text></view>
         <view><text class="{{item.cardStatus == 0? 'instatus':'notstatus'}}">{{showText[item.cardStatus]}}</text></view>
       </view>
-      <view class="item_right">
+      <view class="item_right" style="display: flex;">
         <view class="editBtn" bindtap="untying" data-cardNam = "{{item.cardName}}" data-cardid = "{{item.cardId}}">{{showText2[item.cardStatus]}}</view>
-      </view>
+        <view class="editBtn" bindtap="{{item.cardStatus == 0? 'lostcard':'untie'}}" data-cardName = "{{item.cardName}}" data-cardid = "{{item.cardId}}">{{item.cardStatus}}</view>
+      </view> 
     </view>
-    
   </block>
   <view class="flex item" style="display: flex;">
       <view class="flex_auto item_left">
@@ -46,9 +44,8 @@
       </view>
       
     </view>
-  <view class="flex item_bottom" style="display: flex;">
-    
-    <view><button class="editBtn" catchtap="openwin" data-url="card_bind">添加卡片</button></view>
 
+  <view class="flex item_bottom" style="display: flex;">
+    <view><button class="editBtn" catchtap="openwin" data-url="card_bind">添加卡片</button></view>
   </view>
 </view>

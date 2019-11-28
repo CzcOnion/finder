@@ -7,7 +7,7 @@ Page({
         title: '',
       showText: [" ","已挂失"],
       showText2: ['挂失','解挂'],
-      items:[],
+      items:[{cardName : " ", cardId:'223'}],
     },
     //事件处理函数
     onLoad: function (options) {
