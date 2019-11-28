@@ -1,7 +1,7 @@
 //获取应用实例
 var tcity = require("../../utils/schools.js");
 var util = require('../../utils/util.js');
-var log = require("../../utils/log.js")
+var log = require("../../utils/log.js");
 var app = getApp()
 Page({
   data: {
@@ -170,7 +170,7 @@ Page({
       })
       return false;
     }
-    if (mobile.length != 11) {
+    if (data.phone.length != 11) {
       wx.showToast({
         title: '手机号长度有误！',
         icon: 'success',
@@ -179,7 +179,7 @@ Page({
       return false;
     }
     var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
-    if (!myreg.test(mobile)) {
+    if (!myreg.test(data.phone)) {
       wx.showToast({
         title: '手机号有误！',
         icon: 'success',
@@ -222,7 +222,7 @@ Page({
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header
       success: function (res) {
-        log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", phone:" + res.data.result.phoneNum);
+        log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo);
         wx.hideToast();
         if (res.data.errorNo == 0) {
           wx.showToast({

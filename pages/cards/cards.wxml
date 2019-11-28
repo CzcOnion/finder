@@ -16,7 +16,7 @@
       </view>
     </view>
   </block> -->
-  <block wx:for="{{items}}" wx:for-index="index" wx:for-item="item">
+  <block wx:for="{{items}}" wx:for-index="index">
     <view class="flex item" style="display: flex;">
       <view class="flex_auto item_left">
         <view><text class="title">{{item.cardName}}</text></view>
