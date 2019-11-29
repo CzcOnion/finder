@@ -8,7 +8,6 @@ Page({
     cardId: '',//卡号
     cardData:[],
     cardNames:[],//卡片集合
-    cardName: '',//卡片
     card_index:0,
     cardCode:0,
     
@@ -19,7 +18,6 @@ Page({
     this.setData({
       card_index: e.detail.value,
       cardCode: this.data.cardData[e.detail.value].code,
-      cardName: this.data.cardData[e.detail.value].name,
     })
   },
   open: function () {
@@ -97,13 +95,13 @@ Page({
     })
     // 获取uuid
     var seqId = util.wxuuid();
-    log.info("bind card: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId + "cardName:" + data.cardName);
+    log.info("bind card: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId + "cardName:" + data.cardNames[data.card_index]);
     //保存数据
     wx.request({
       url: 'http://' + app.globalData.backIp + ':' + app.globalData.cardmgrPort + '/finder/cardmgr/card',
       data: {
         cardId: data.cardId,
-        cardName: data.cardName,
+        cardName: data.cardNames[data.card_index], // 不要直接复制cardName 否则用户未选择时传的是空
         openId: app.globalData.openId,
         unionId: app.globalData.unionId,
         seqId: seqId
