@@ -230,7 +230,7 @@ Page({
             wx.request
               ({
                 url: 'http://' + app.globalData.backIp + ':' + app.globalData.cardmgrPort + '/finder/cardmgr/unitecard/' + cardId,
-                method: "DELETE",
+                method: "PUT",
                 data: {
                   seqId: seqId,
                   openId: app.globalData.openId,
