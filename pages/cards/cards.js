@@ -57,7 +57,7 @@ Page({
           var seqId = util.wxuuid();
           console.log(seqId);
           // 获取cardName
-          var cardName = event.currentTarget.dataset.cardName;
+          var cardName = event.currentTarget.dataset.cardname; // cardname 是小写的id
           // 获取cardId
           var cardId = event.currentTarget.dataset.cardid; // cardid 是小写的id
           console.log(cardId);
