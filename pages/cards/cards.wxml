@@ -26,7 +26,7 @@
         </view>
       </view>
       <view class="item_right" style="display: flex;">
-        <view class="editBtn" bindtap="untying" data-cardNam = "{{item.cardName}}" data-cardid = "{{item.cardId}}">解绑</view>
+        <view class="editBtn" bindtap="untying" data-cardname = "{{item.cardName}}" data-cardid = "{{item.cardId}}">解绑</view>
         <view class="editBtn" bindtap="{{item.cardStatus == 0? 'lostcard':'untie'}}" data-cardname = "{{item.cardName}}" data-cardid = "{{item.cardId}}">{{showText2[item.cardStatus]}}</view>
       </view> 
     </view>

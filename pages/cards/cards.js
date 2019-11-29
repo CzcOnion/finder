@@ -99,7 +99,7 @@ Page({
                   confirmText: '朕知道了',
                   
                 })
-                log.error("解绑不成功 res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", cardName:" + cardName + ", cardId:" + cardId);
+                log.error("解绑不成功 res: seqId:" + seqId + "res.errNo:" + res.data.errorNo + ", cardName:" + cardName + ", cardId:" + cardId);
               }
             },
             fail: function (res) {
@@ -141,7 +141,7 @@ Page({
         var seqId = util.wxuuid();
         console.log(seqId);
         // 获取cardName
-        var cardName = event.currentTarget.dataset.cardName;
+        var cardName = event.currentTarget.dataset.cardname;
         // 获取cardId
         var cardId = event.currentTarget.dataset.cardid; // cardid 是小写的id
         wx.showToast({
@@ -218,7 +218,7 @@ Page({
             var seqId = util.wxuuid();
             console.log(seqId);
             // 获取cardName
-            var cardName = event.currentTarget.dataset.cardName;
+            var cardName = event.currentTarget.dataset.cardname;
             // 获取cardId
             var cardId = event.currentTarget.dataset.cardid; // cardid 是小写的id
             wx.showToast({
