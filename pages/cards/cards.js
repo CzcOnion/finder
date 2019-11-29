@@ -57,7 +57,7 @@ Page({
           var seqId = util.wxuuid();
           console.log(seqId);
           // 获取cardName
-          var cardName = event.currentTarget.dataset.cardname; // cardname 是小写的id
+          var cardName = event.currentTarget.dataset.cardname; // cardname 是小写
           // 获取cardId
           var cardId = event.currentTarget.dataset.cardid; // cardid 是小写的id
           console.log(cardId);
@@ -88,7 +88,7 @@ Page({
                 // 更新全局变量
                 app.globalData.hasBindCard = res.data.result.hasBindCard;
                 // 刷新
-                this.setData({});
+                that.setData({});
               }
               else
               {
@@ -171,7 +171,7 @@ Page({
               log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + "hasBindCard:" + res.data.result.hasBindCard);
               
               // 刷新
-              this.setData({});
+              that.setData({});
             }
             else {
               wx.showModal({
@@ -248,7 +248,7 @@ Page({
                     log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo);
 
                     // 刷新
-                    this.setData({});
+                    that.setData({});
                   }
                   else {
                     wx.showModal({
