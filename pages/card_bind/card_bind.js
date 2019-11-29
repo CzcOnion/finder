@@ -115,11 +115,16 @@ Page({
         console.log(res);
         log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo);
         if (res.data.errorNo == 0){
+          log.info("bind success: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo);
           wx.showToast({
             title: '绑定成功',
           })
         } 
         else{
+          if (res.data.errorNo == 0)
+          {
+            
+          }
           log.error("server error!bind error: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo);
           wx.showModal({
             title: '绑定不成功',
