@@ -42,6 +42,7 @@ Page({
     that.setData({
       cardId: cardId,
       cardNames: cardNames,
+      cardData: cardData,
     })
 
   },
@@ -96,14 +97,13 @@ Page({
     })
     // 获取uuid
     var seqId = util.wxuuid();
-    log.info("bind card: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId);
+    log.info("bind card: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId + "cardName:" + data.cardName);
     //保存数据
     wx.request({
       url: 'http://192.168.1.106:8082/finder/cardmgr/cards',
       data: {
         cardId: data.cardId,
         cardName: data.cardName,
-        cardCode: data.cardCode,
         openId: app.globalData.openId,
         unionId: app.globalData.unionId,
         seqId: seqId
