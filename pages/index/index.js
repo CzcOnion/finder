@@ -27,9 +27,9 @@ Page({
     var that = this;
     var seqId = util.wxuuid();;
     // 生命周期函数--监听页面加载
-    //轮播图
+    //广告轮播图
     wx.request({
-      url: app.globalData.backIp + app.globalData.backPort,
+      url: 'http://' + app.globalData.backIp + ':' + app.globalData.bizmgrPort + '/finder/bizmgr/adimages',
       data: {
         seqId:seqId,
       },
@@ -67,7 +67,7 @@ Page({
     
     // 获取失卡公告
     wx.request({
-      url: app.globalData.backIp + app.globalData.backPort,
+      url: 'http://' + app.globalData.backIp + ':' + app.globalData.bizmgrPort + '/finder/bizmgr/losscards',
       data: {
         seqId: seqId,
       },

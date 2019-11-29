@@ -60,7 +60,7 @@ Page({
       log.info("get data: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId);
       // 获取信息
       wx.request({
-        url: 'http://192.168.1.106:8080/finder/usermgr/user/' + app.globalData.openId,
+        url: 'http://' + app.globalData.backIp + ':' + app.globalData.usermgrPort + '/finder/usermgr/user/' + app.globalData.openId,
         data: {
           seqId: seqId,
           unionId: app.globalData.unionId,
@@ -207,9 +207,9 @@ Page({
     console.log('设置缓存')
     
     var seqId = util.wxuuid();
-    log.info("get data: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId);
+    log.info("update data: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId);
     wx.request({
-      url: "http://192.168.1.106:8080/finder/usermgr/user/"+app.globalData.openId,
+      url: 'http://' + app.globalData.backIp + ':' + app.globalData.usermgrPort + '/finder/usermgr/user/' + app.globalData.openId,
       data: {
         seqId:seqId,
         userName: data.name,

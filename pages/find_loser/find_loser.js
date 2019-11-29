@@ -135,7 +135,7 @@ Page({
     log.info("find loser: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId);
     //保存数据
     wx.request({
-      url: app.globalData.backIp + ':' + app.globalData.backPort,
+      url: 'http://' + app.globalData.backIp + ':' + app.globalData.bizmgrPort + '/finder/bizmgr/pickupcard',
       data: {
         cardId: data.cardId,
         cardName: data.cardName,

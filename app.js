@@ -70,11 +70,13 @@ App({
   },
   globalData: {
     userInfo: null,
-    backIp: "122.51.236.116",
-    backPort: "3306",
+    backIp: '192.168.1.105',
+    usermgrPort: 8080,
+    bizmgrPort: 8081,
+    cardmgrPort: 8082,
     openId: null,
     unioniud: null,
     isRegister: 0,
-    hasBindCard:0
+    hasBindCard: 0
   }
 })

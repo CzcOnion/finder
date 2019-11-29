@@ -18,7 +18,7 @@ Page({
 
       //playingList
       wx.request({
-        url: 'http://192.168.1.106:8082/finder/cardmgr/cards/' + app.globalData.openId,
+        url: 'http://' + app.globalData.backIp + ':' + app.globalData.cardmgrPort + '/finder/cardmgr/cards/' + app.globalData.openId,
           method: 'GET',
           data: {
             seqId: seqId,
@@ -68,7 +68,7 @@ Page({
           })
           log.info("untying card: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId + ", cardName:" + cardName + ", cardId:" + cardId);
           wx.request({
-            url: 'http://192.168.1.106:8082/finder/cardmgr/card/' + cardId,
+            url: 'http://' + app.globalData.backIp + ':' + app.globalData.cardmgrPort + '/finder/cardmgr/card/' + cardId,
             method: "DELETE",
             data: {
               seqId: seqId,
@@ -152,7 +152,7 @@ Page({
         log.info("untying card: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId + ", cardName:" + cardName + ", cardId:" + cardId);
         wx.request
         ({
-          url: 'http://192.168.1.106:8082/finder/cardmgr/losscard/' + cardId,
+            url: 'http://' + app.globalData.backIp + ':' + app.globalData.cardmgrPort + '/finder/cardmgr/losscard/' + cardId,
           method: "PUT",
           data: {
             seqId: seqId,
@@ -229,7 +229,7 @@ Page({
             log.info("untie card: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId + ", cardName:" + cardName + ", cardId:" + cardId);
             wx.request
               ({
-                url: 'http://192.168.1.106:8082/finder/cardmgr/losscard/' + cardId,
+                url: 'http://' + app.globalData.backIp + ':' + app.globalData.cardmgrPort + '/finder/cardmgr/unitecard/' + cardId,
                 method: "DELETE",
                 data: {
                   seqId: seqId,

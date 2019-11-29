@@ -100,7 +100,7 @@ Page({
     log.info("bind card: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId + "cardName:" + data.cardName);
     //保存数据
     wx.request({
-      url: 'http://192.168.1.106:8082/finder/cardmgr/cards',
+      url: 'http://' + app.globalData.backIp + ':' + app.globalData.cardmgrPort + '/finder/cardmgr/card',
       data: {
         cardId: data.cardId,
         cardName: data.cardName,
