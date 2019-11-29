@@ -121,9 +121,23 @@ Page({
           })
         } 
         else{
-          if (res.data.errorNo == 0)
+          if (res.data.errorNo == 300105)
           {
-            
+            log.info("用户重复绑定 seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo);
+            wx.showModal({
+              title: '绑定不成功',
+              content: '您已经绑定该卡片，请勿重复绑定！',
+              showCancel: false,
+              confirmText: '朕知道了',
+              success(res) {
+                //返回页面
+                wx.navigateBack
+                  ({
+                    delta: 1
+                  })
+              }
+            })
+            return false;
           }
           log.error("server error!bind error: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo);
           wx.showModal({
