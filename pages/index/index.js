@@ -25,7 +25,7 @@ Page({
   },
   onLoad: function (options) {
     var that = this;
-    var seqId = util.wxuuid();;
+    var seqId = util.wxuuid();
     // 生命周期函数--监听页面加载
     //广告轮播图
     wx.request({
@@ -36,7 +36,8 @@ Page({
       method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header
       success: function (res) {
-        log.info("seqId:" + seqId + ", length:" + res.data.result.imgUrls.length)
+        console.log(res.data);
+        log.info("seqId:" + res.data.seqId + ", length:" + res.data.result.imgUrls.length);
         var carousel = res.data.result.imgUrls;
         if (carousel.length) {
           var tampArr = [];
@@ -51,8 +52,8 @@ Page({
         else
         {
           // default images
-          imgUrls.push('../../images/banner2.png');
-          imgUrls.push('../../images/invit2.png');
+          that.data.imgUrls.push('../../images/banner2.png');
+          that.data.imgUrls.push('../../images/invit2.png');
         }
         
         // success
@@ -66,36 +67,36 @@ Page({
     })
     
     // 获取失卡公告
-    wx.request({
-      url: 'http://' + app.globalData.backIp + ':' + app.globalData.bizmgrPort + '/finder/bizmgr/losscards',
-      data: {
-        seqId: seqId,
-      },
-      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      // header: {}, // 设置请求的 header
-      success: function (res) {
-        var carousel = res.data.result.noticeList;
-        log.info("seqId:" + seqId + ", length:" + res.data.result.noticeList.length)
-        if (carousel.length) {
-          var tampArr = [];
-          for (var i = 0; i < carousel.length; i++) {
-            tampArr.push(carousel[i])
-          }
-          that.setData({
-            noticeList: tampArr
-          })
-        }
-        // success
-      },
-      fail: function () {
-        // fail
-        log.error('error');
-        log.error('获取广告图错误,' + 'seqId:' + seqId);
-      },
-      complete: function () {
-        // complete
-      }
-    })
+    // wx.request({
+    //   url: 'http://' + app.globalData.backIp + ':' + app.globalData.bizmgrPort + '/finder/bizmgr/losscards',
+    //   data: {
+    //     seqId: seqId,
+    //   },
+    //   method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+    //   // header: {}, // 设置请求的 header
+    //   success: function (res) {
+    //     var carousel = res.data.result.noticeList;
+    //     log.info("seqId:" + seqId + ", length:" + res.data.result.noticeList.length)
+    //     if (carousel.length) {
+    //       var tampArr = [];
+    //       for (var i = 0; i < carousel.length; i++) {
+    //         tampArr.push(carousel[i])
+    //       }
+    //       that.setData({
+    //         noticeList: tampArr
+    //       })
+    //     }
+    //     // success
+    //   },
+    //   fail: function () {
+    //     // fail
+    //     log.error('error');
+    //     log.error('获取广告图错误,' + 'seqId:' + seqId);
+    //   },
+    //   complete: function () {
+    //     // complete
+    //   }
+    // })
 
   },
   openwin: function (event) { //跳转页面

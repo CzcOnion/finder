@@ -11,7 +11,8 @@
     "pages/personal_info/personal_info",
     "pages/find_loser/find_loser",
     "pages/cards/cards",
-    "pages/card_bind/card_bind"
+    "pages/card_bind/card_bind",
+    "pages/myHelpers/myHelpers"
   ],
   "window": {
     "backgroundTextStyle": "light",
