@@ -5,9 +5,10 @@ var app = getApp();
 Page({
     data: {
         title: '',
-      showText: [" ","已挂失"],
-      showText2: ['挂失','解挂'],
+      showText: ["","已挂失","被拾取"],
+      showText2: ['挂失','解挂','确认收卡'],
       items: [],
+      testval :2,
     },
     //事件处理函数
     onLoad: function (options) {
@@ -204,14 +205,95 @@ Page({
    },
   
   
-  untie:function(event){
+  befind:function(event){
+    wx.showModal
+      ({
+        title: '确认收卡',
+        content: '你确定已经拿到卡片了吗？',
+        success(res) {
+          if (res.confirm)
+          {
+            var that = this;
+            //var data = this.data;
+            // 获取uuid
+            var seqId = util.wxuuid();
+            console.log(seqId);
+            // 获取cardName
+            var cardName = event.currentTarget.dataset.cardname;
+            // 获取cardId
+            var cardId = event.currentTarget.dataset.cardid; // cardid 是小写的id
+            wx.showToast({
+              title: '正在确认',
+              icon: 'loading',
+              duration: 100000,
+            })
+            log.info("has received card: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId + ", cardName:" + cardName + ", cardId:" + cardId);
+            log.setFilterMsg(seqId);
+            wx.request
+              ({
+                url: 'http://' + app.globalData.backIp + ':' + app.globalData.cardmgrPort + '/finder/cardmgr/receivecard/' + cardId,
+                method: "PUT",
+                data: {
+                  seqId: seqId,
+                  openId: app.globalData.openId,
+                  unionId: app.globalData.unionId,
+                  cardName: cardName,
+                  cardId: cardId,
+                },
+                success: function (res) {
+                  console.log(res.data)
+                  wx.hideToast();
+                  if (res.data.errorNo == 0) {
+                    wx.showToast({
+                      title: '确认成功',
+                    })
+                    log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo);
+                    log.setFilterMsg(seqId);
+                    // 刷新
+                    that.setData({});
+                  }
+                  else {
+                    wx.showModal({
+                      title: '确认不成功',
+                      content: '确认不成功，请重试，如果还不成功可联系客服处理！',
+                      showCancel: false,
+                      confirmText: '朕知道了',
+
+                    })
+                    log.error("确认不成功 res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", cardName:" + cardName + ", cardId:" + cardId);
+                    log.setFilterMsg(seqId);
+                  }
+                },
+              fail: function (res) {
+                wx.hideToast();
+                wx.showModal({
+                  title: '确认未成功',
+                  content: '网络发生错误，无法解挂，请稍后再试试！',
+                  showCancel: false,
+                  confirmText: '朕知道了',
+
+                })
+                log.error("网络不成功 确认收卡 seqId:" + seqId + ", cardName:" + cardName + ", cardId:" + cardId);
+                log.setFilterMsg(seqId);
+              },
+              complete: function (res) {
+              },
+            })
+          }
+          else if(res.cancel)
+          {
+
+          }
+        }
+      })
+  },
+  untie: function (event) {
     wx.showModal
       ({
         title: '解挂卡片',
         content: '你确定已经找到卡片或者补办，而解挂该卡片吗？',
         success(res) {
-          if (res.confirm)
-          {
+          if (res.confirm) {
             var that = this;
             //var data = this.data;
             // 获取uuid
@@ -261,23 +343,22 @@ Page({
                     log.error("解挂不成功 res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", cardName:" + cardName + ", cardId:" + cardId);
                   }
                 },
-              fail: function (res) {
-                wx.hideToast();
-                wx.showModal({
-                  title: '解挂未成功',
-                  content: '网络发生错误，无法解挂，请稍后再试试！',
-                  showCancel: false,
-                  confirmText: '朕知道了',
+                fail: function (res) {
+                  wx.hideToast();
+                  wx.showModal({
+                    title: '解挂未成功',
+                    content: '网络发生错误，无法解挂，请稍后再试试！',
+                    showCancel: false,
+                    confirmText: '朕知道了',
 
-                })
-                log.error("网络不成功 解挂 seqId:" + seqId + ", cardName:" + cardName + ", cardId:" + cardId);
-              },
-              complete: function (res) {
-              },
-            })
+                  })
+                  log.error("网络不成功 解挂 seqId:" + seqId + ", cardName:" + cardName + ", cardId:" + cardId);
+                },
+                complete: function (res) {
+                },
+              })
           }
-          else if(res.cancel)
-          {
+          else if (res.cancel) {
 
           }
         }

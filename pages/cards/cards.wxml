@@ -36,13 +36,13 @@
         <view><text class="title">大学城一卡通</text></view>
         <view>
           <text class="sub_title">877554</text>
-          <text class=" notstatus">已被找到</text>
+          <text class="{{testval == 0? 'instatus':'notstatus'}}">{{showText[testval]}}</text>
         </view>
         <!-- <view><text class="tag instatus">haha</text></view> -->
       </view>
       <view class=" item_right" style="display: flex;">
         <view class="editBtn" bindtap="untying" data-cardname = "大学城一卡通" data-cardid = "877554">解绑</view>
-        <view class="editBtn" bindtap="{{item.cardStatus == 0? 'lostcard':'untie'}}" data-cardname = "大学城一卡通" data-cardid = "877554">确认收卡</view>
+        <view class="editBtn" bindtap="{{item.cardStatus == 0? 'lostcard':item.cardStatus == 1?'untie':'befind'}}" data-cardname = "大学城一卡通" data-cardid = "877554">{{showText2[testval]}}</view>
       </view>
       
     </view>
