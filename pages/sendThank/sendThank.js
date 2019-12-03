@@ -1,4 +1,7 @@
 var app = getApp();
+var util = require('../../utils/util.js');
+var log = require('../../utils/log.js');// 引用log.js文件
+
 Page({
   data: {
     imgArr: [],
@@ -20,32 +23,26 @@ Page({
   confirm: function () {
     var textareaVal = this.data.textareaVal;
     var uploadimgArr = this.data.uploadimgArr;
-    if (!textareaVal) {
-      wx.showModal({
-        title: '提示',
-        content: '请填写您的感谢话语',
-        showCancel: false,
-        success: function (res) {
-          if (res.confirm) {
-            console.log('用户点击确定')
-          }
-        }
-      })
-      return false;
-    }
-
-    wx.showToast({
-      title: '提交中...',
-      icon: 'loading',
-      duration: 10000
-    });
+    // if (!textareaVal) {
+    //   wx.showModal({
+    //     title: '提示',
+    //     content: '请填写您的感谢话语',
+    //     showCancel: false,
+    //     success: function (res) {
+    //       if (res.confirm) {
+    //         console.log('用户点击确定')
+    //       }
+    //     }
+    //   })
+    //   return false;
+    // }
     // 获取uuid
     var seqId = util.wxuuid();
     console.log(seqId);
     wx.showToast({
       title: '正在发送',
       icon: 'loading',
-      duration: 10000,
+      duration: 100000,
     })
     log.info("thank card: seqId:" + seqId + ", openId:" + app.globalData.openId + ", unionid:" + app.globalData.unionId);
     wx.request({

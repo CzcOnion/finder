@@ -42,7 +42,7 @@ Page({
     },
     onReady: function () {
         wx.setNavigationBarTitle({
-            title: '我的卡片'
+            title: '我拾取的'
         })
     },
   untying: function (event) {

@@ -42,7 +42,7 @@ Page({
     },
     onReady: function () {
         wx.setNavigationBarTitle({
-            title: '我的卡片'
+            title: '丢卡记录'
         })
     },
   thank: function (event) {
