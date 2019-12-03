@@ -14,7 +14,7 @@ App({
         if (res.code) {
           //发起网络请求
           wx.request({
-            url: "http://127.0.0.1:8080/finder/usermgr/check/"+res.code,
+            url: "http://122.51.236.116:8080/finder/usermgr/check/"+res.code,
             method:"GET",
             data: {
               seqId: util.wxuuid()
@@ -70,7 +70,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    backIp: '127.0.0.1',
+    backIp: '122.51.236.116',
     usermgrPort: 8080,
     bizmgrPort: 8081,
     cardmgrPort: 8082,

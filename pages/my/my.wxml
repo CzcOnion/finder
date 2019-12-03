@@ -25,14 +25,14 @@
     <view class="row_l yhq" catchtap="openwin" data-url="cards">
       <image src="../../images/lxkf.png"></image>
     </view>
-    <view class="row_text" catchtap="openwin" data-url="myHelpers">我帮助的人</view>
+    <view class="row_text" catchtap="openwin" data-url="myHelpers">我拾取的</view>
     <view class="arrows" catchtap="openwin" data-url="myHelpers"></view>
   </view>
   <view class="row border_b" catchtap="openwin" data-url="myHelpers">
     <view class="row_l yhq" catchtap="openwin" data-url="myHelpers">
       <image src="../../images/lxkf.png"></image>
     </view>
-    <view class="row_text" catchtap="openwin" data-url="myHelpers">帮助我的人</view>
-    <view class="arrows" catchtap="openwin" data-url="myHelpers"></view>
+    <view class="row_text" catchtap="openwin" data-url="HelpMe">丢卡记录</view>
+    <view class="arrows" catchtap="openwin" data-url="HelpMe"></view>
   </view>
 </view>

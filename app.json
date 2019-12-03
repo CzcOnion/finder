@@ -12,7 +12,9 @@
     "pages/find_loser/find_loser",
     "pages/cards/cards",
     "pages/card_bind/card_bind",
-    "pages/myHelpers/myHelpers"
+    "pages/myHelpers/myHelpers",
+    "pages/HelpMe/HelpMe",
+    "pages/sendThank/sendThank"
   ],
   "window": {
     "backgroundTextStyle": "light",

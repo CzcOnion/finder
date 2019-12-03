@@ -1,0 +1,2 @@
+<textarea class="textarea" placeholder="请输入你要感谢的话语" placeholder-class="placeholder" bindinput="textareaVal" />
+<view class="confirm" catchtap="confirm">提交</view>
