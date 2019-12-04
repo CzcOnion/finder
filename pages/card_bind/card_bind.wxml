@@ -19,6 +19,9 @@
   </view>
 
 </view>
-<view class="editBtn" bindtap="confirm">
+<!-- <view class="editBtn" bindtap="confirm">
   绑定
-</view>
+</view> -->
+<form bindsubmit="confirm" report-submit='true' >
+  <button form-type="submit"  class="editBtn">绑定</button>
+</form>

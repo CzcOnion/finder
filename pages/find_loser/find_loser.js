@@ -102,7 +102,7 @@ Page({
   //确定
   confirm: function (e) {
 
-    var fromId = e.detail.formId;
+    var formId = e.detail.formId;
     var that = this;
     var data = this.data;
     
@@ -147,7 +147,7 @@ Page({
         schoolName: data.school,
         majorName: data.major,
         seqId: seqId,
-        fromId: fromId,
+        formId: formId,
       },
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header

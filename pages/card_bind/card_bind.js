@@ -58,7 +58,8 @@ Page({
     console.log(event.detail.value);
   },
   //确定
-  confirm: function () {
+  confirm: function (e) {
+    var formId = e.detail.formId;
     if (app.globalData.isRegister != 1)
     {
       wx.showModal({
@@ -104,7 +105,8 @@ Page({
         cardName: data.cardNames[data.card_index], // 不要直接复制cardName 否则用户未选择时传的是空
         openId: app.globalData.openId,
         unionId: app.globalData.unionId,
-        seqId: seqId
+        seqId: seqId,
+        formId: formId,
       },
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header
