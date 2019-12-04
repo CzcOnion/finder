@@ -29,6 +29,9 @@
 
 
 </view>
-<view class="editBtn" bindtap="confirm">
+<!-- <view class="editBtn" bindtap="confirm">
   确定
-</view>
+</view> -->
+<form bindsubmit="confirm" report-submit='true' >
+  <button form-type="submit" class="editBtn" >确定</button>
+</form>

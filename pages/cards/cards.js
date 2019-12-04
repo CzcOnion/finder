@@ -8,7 +8,7 @@ Page({
       showText: ["","已挂失","被拾取"],
       showText2: ['挂失','解挂','确认卡在手'],
       items: [],
-      testval :2,
+      testval :0,
     },
     //事件处理函数
     onLoad: function (options) {
@@ -130,6 +130,7 @@ Page({
     })
     },
   lostcard: function (event) {
+    var formId = event.detail.formId;
     wx.showModal
     ({
       title: '挂失卡片',
@@ -161,6 +162,7 @@ Page({
             unionId: app.globalData.unionId,
             cardName: cardName,
             cardId: cardId,
+            formId: formId,
           },
           success: function (res) {
             console.log(res.data)
@@ -169,8 +171,7 @@ Page({
               wx.showToast({
                 title: '挂失成功',
               })
-              log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + "hasBindCard:" + res.data.result.hasBindCard);
-              
+              log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", formId:" + formId);
               // 刷新
               that.setData({});
             }
@@ -268,7 +269,7 @@ Page({
                 wx.hideToast();
                 wx.showModal({
                   title: '确认未成功',
-                  content: '网络发生错误，无法解挂，请稍后再试试！',
+                  content: '网络发生错误，无法确认，请稍后再试试！',
                   showCancel: false,
                   confirmText: '朕知道了',
 

@@ -100,7 +100,9 @@ Page({
      
   },
   //确定
-  confirm: function () {
+  confirm: function (e) {
+
+    var fromId = e.detail.formId;
     var that = this;
     var data = this.data;
     
@@ -145,12 +147,13 @@ Page({
         schoolName: data.school,
         majorName: data.major,
         seqId: seqId,
+        fromId: fromId,
       },
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header
       success: function (res) {
         wx.hideLoading();
-        log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", statusCode:" + res.data.result.statusCode);
+        log.info("return res: seqId:" + res.data.seqId + "res.errNo:" + res.data.errorNo + ", statusCode:" + res.data.result.statusCode + ", fromId:" + fromId);
         if ((res.data.errorNo == 0) && (res.data.result.statusCode == 1)){
           wx.showModal({
             title: '赠人玫瑰，手有余香！',

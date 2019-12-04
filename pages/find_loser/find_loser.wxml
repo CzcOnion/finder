@@ -43,6 +43,9 @@
 
 
 </view>
-<view class="editBtn" bindtap="confirm">
-  拾卡寻人
-</view>
+<form bindsubmit="confirm" report-submit='true' >
+  <!-- <view class="editBtn">
+    拾卡寻人
+  </view> -->
+  <button form-type="submit" class="editBtn" >拾卡寻人</button>
+</form>

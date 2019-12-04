@@ -149,7 +149,9 @@ Page({
     console.log(event.detail.value)
   },
   //确定
-  confirm: function () {
+  confirm: function (e) {
+    var formId = e.detail.formId;
+    console.log(formId);
     var that = this;
     console.log(this.data)
     var data = this.data;
@@ -217,7 +219,8 @@ Page({
         schoolName: data.school,
         majorName: data.major,
         openId: app.globalData.openid,
-        unionId: app.globalData.unionid
+        unionId: app.globalData.unionid,
+        formId: formId,
       },
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header

@@ -41,8 +41,19 @@
         <!-- <view><text class="tag instatus">haha</text></view> -->
       </view>
       <view class=" item_right" style="display: flex;">
-        <view class="editBtn" bindtap="untying" data-cardname = "大学城一卡通" data-cardid = "877554">解绑</view>
-        <view class="editBtn" bindtap="{{item.cardStatus == 0? 'lostcard':item.cardStatus == 1?'untie':'befind'}}" data-cardname = "大学城一卡通" data-cardid = "877554">{{showText2[testval]}}</view>
+        <!-- <view class="editBtn" bindtap="untying" data-cardname = "大学城一卡通" data-cardid = "877554">解绑</view> -->
+        <view>
+        <form bindsubmit="untying" data-cardname = "大学城一卡通" data-cardid = "877554" report-submit='true'>
+          <button class="editBtn" size="mini" form-type="submit">解绑</button>
+          </form>
+          </view>
+        <view>
+
+          <form   bindsubmit="{{testval == 0? 'lostcard':testval == 1?'untie':'befind'}}" data-cardname = "大学城一卡通" data-cardid = "877554" report-submit='true'>
+          <button class="editBtn" size="mini" form-type="submit">{{showText2[testval]}}</button>
+          </form>
+        </view>
+        <!-- <view class="editBtn" bindtap="{{item.cardStatus == 0? 'lostcard':item.cardStatus == 1?'untie':'befind'}}" data-cardname = "大学城一卡通" data-cardid = "877554">{{showText2[testval]}}</view> -->
       </view>
       
     </view>
